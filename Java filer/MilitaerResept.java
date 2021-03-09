@@ -2,9 +2,9 @@
 
 public class MilitaerResept extends HvitResept{
 
-    //kaller paa super sin konstrukoer 
-    public MilitaerResept(Legemiddel legemiddel, Lege lege, int pasientId, int reit){
-        super(legemiddel, lege, pasientId, reit);
+    //kaller paa super sin konstrukoer
+    public MilitaerResept(Legemiddel legemiddel, Lege lege, Pasient pasient, int reit){
+        super(legemiddel, lege, pasient, reit);
     }
 
     //legger til typen resept etter farge
