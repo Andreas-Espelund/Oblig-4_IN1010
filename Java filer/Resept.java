@@ -3,42 +3,42 @@ abstract class Resept{
     protected int id;
     protected Legemiddel legemiddel;
     protected Lege lege;
-    protected int pasientId;
+    protected Pasient pasient;
     protected int reit;
     protected int pris;
 
     //konstruktoeren til Resept tar inn info om resepten og tilordnar det til
     //instansvariablane. Den faar en unik id.
-    public Resept(Legemiddel legemiddel, Lege lege, int pasientId, int reit){
+    public Resept(Legemiddel legemiddel, Lege lege, Pasient pasient, int reit){
         this.legemiddel = legemiddel;
         this.lege = lege;
-        this.pasientId = pasientId;
+        this.pasient = pasient;
         this.reit = reit;
         id = nesteId;
         nesteId ++;
         pris = legemiddel.hentPris();
-        
 
-    } 
-    
+
+    }
+
     //returnerer reseptens Legemiddel
     public Legemiddel hentLegemiddel(){
         return legemiddel;
     }
-   
+
     //returnerer reseptens Lege
     public Lege hentLege(){
         return lege;
     }
-   
+
     //returnerer reseptens id
     public int hentId(){
         return id;
     }
 
     //returnerer reseptens pasientId
-    public int hentPasientId(){
-        return pasientId;
+    public Pasient hentPasientId(){
+        return pasient;
     }
 
     //returnerer reseptens gjenstaande reit
@@ -60,7 +60,7 @@ abstract class Resept{
 
     //toString returnerer informasjon om resepten
     public String toString(){
-        return "ID: " + id + " | Legemiddel: " + legemiddel.hentNavn() + 
-        " | Lege: " + lege + " | Pasient ID: " + pasientId + " | Reit: " + reit + " | Pris aa betale: " + this.prisAaBetale();
+        return "ID: " + id + " | Legemiddel: " + legemiddel.hentNavn() +
+        " | Lege: " + lege + " | Pasient ID: " + pasient.hentID() + " | Reit: " + reit + " | Pris aa betale: " + this.prisAaBetale();
     }
 }
