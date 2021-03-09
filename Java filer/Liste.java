@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.lang.Iterable;
+
 interface Liste<T> extends Iterable <T> {
     public int stoerrelse();
     public void leggTil(int pos, T x);

@@ -1,12 +1,32 @@
 /*
 Klassen Lenkeliste har T som klasseparameter og implementerer grensesnittet Liste
-
 Lenkelista er en enkeltlenka liste med en startnode peker.
+Klassen inneholder dei indre klassene Node og LenkelisteIterator
+
+Metoder:
+    * public void sett(int pos, T x)
+    * public void leggTil(T x)
+    * public void leggTil(int pos,T x)
+    * public T fjern()
+    * public T fjern(int pos)
+    * public T hent(int pos)
+    * public int stoerrelse()
+    * public Iterator<T> iterator()
+
+Variabler:
+    * protected Node start
+
+
 */
+
+import java.util.Iterator;
 
 public class Lenkeliste<T> implements Liste<T>{
     
-    // Klassen Noden har peker til neste node og peker til data av typen T
+    /*
+    _____________________________________________________________________________________________________
+        Klassen Noden har peker til neste node og peker til data av typen T
+    */
     public class Node{
         private Node neste = null;
         private T data;
@@ -28,11 +48,39 @@ public class Lenkeliste<T> implements Liste<T>{
         }
 
     }
+
+
+    /* 
+    _______________________________________________________________________________________________________
+        Indre klasse for LenkelisteIterator
+            * Metodane hasNext og next lar oss bruke en for each lokke i 
+              Lenkeliste, Stabel og SortertLenkeliste
+    */
+
+    public class LenkelisteIterator implements Iterator<T>{
+        
+        protected int pos = 0;
+        protected Lenkeliste<T> lenkeliste;
+
+        public LenkelisteIterator (Lenkeliste<T> lenkeliste){
+            this.lenkeliste = lenkeliste;
+        }
+
+        @Override
+        public boolean hasNext(){
+            return (pos < lenkeliste.stoerrelse());
+        }
+
+        @Override
+        public T next(){
+            return (lenkeliste.hent(pos++));
+        }
+    }
+
+
     //startnoden til lenkelista
     protected Node start = null;
     
-    
-
 
     //setter inn overskriver dataen til noden paa indeks pos med dataen x
     @Override
@@ -167,10 +215,12 @@ public class Lenkeliste<T> implements Liste<T>{
         return returstreng;
     }
 
+    //Metoden lager et nytt Iterator objekt, som  lar oss bruke en for each lokke
     @Override
     public Iterator<T> iterator(){
-        return new LenkeIterator<T>(this);
+        return new LenkelisteIterator(this);
     }
+    
 
 }
 
