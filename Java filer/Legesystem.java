@@ -12,11 +12,28 @@ public class Legesystem {
     private static Lenkeliste<Lege> leger = new Lenkeliste<Lege>();
     public static void main(String[] args)throws FileNotFoundException {
 
-        int valg = 0;
+        
         
         //initialisering av program
         skrivFraFil("storFil.txt");
+    
+        kommandoLoekke();
+        //kommandoloekka er ferdig
+        System.out.println("avslutter...");
+    
+    }
+
+    
+
+    /*
+        skrivFrafil leser inn linjer og legger til riktig type element
+        innesingsfilene kan inneholde feil, disse linjene og feil blir printa til terminal
+        og blir ikkje lagt inn. 
+
+    */
+    public static void kommandoLoekke(){
         // Kommandoloekke
+        int valg = 0;
         while (valg != 6){
             skrivMeny();
             valg = taInput();
@@ -61,18 +78,7 @@ public class Legesystem {
             }
 
         }
-        //kommandoloekka er ferdig
-        System.out.println("avslutter...");
     }
-
-    
-
-    /*
-        skrivFrafil leser inn linjer og legger til riktig type element
-        innesingsfilene kan inneholde feil, disse linjene og feil blir printa til terminal
-        og blir ikkje lagt inn. 
-
-    */
 
     public static void skrivFraFil(String filnavn)throws FileNotFoundException{
         try{
