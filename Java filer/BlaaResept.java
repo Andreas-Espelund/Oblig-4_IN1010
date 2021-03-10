@@ -3,8 +3,8 @@
 public class BlaaResept extends Resept{
 
     //kaller paa superklassen sin konstrukoer
-    public BlaaResept(Legemiddel legemiddel, Lege lege, int pasientId,int reit){
-        super(legemiddel, lege, pasientId, reit);
+    public BlaaResept(Legemiddel legemiddel, Lege lege, Pasient pasient, int reit){
+        super(legemiddel, lege, pasient, reit);
     }
 
     //returnerer reseptens farge

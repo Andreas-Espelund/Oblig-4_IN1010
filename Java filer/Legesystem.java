@@ -5,17 +5,17 @@ import java.io.File;
 
 
 public class Legesystem {
-
-    public static void main(String[] args) {
+    //beholdere for pasienter, legemidler, resepter og leger
+    private static Lenkeliste<Pasient> pasienter = new Lenkeliste<Pasient>();
+    private static Lenkeliste<Legemiddel> legemidler = new Lenkeliste<Legemiddel>();
+    private static Lenkeliste<Resept> resepter = new Lenkeliste<Resept>();
+    private static Lenkeliste<Lege> leger = new Lenkeliste<Lege>();
+    public static void main(String[] args)throws FileNotFoundException {
 
         int valg = 0;
-        Lenkeliste<Pasienter> pasienter = new Lenkeliste<Pasienter>();
-        Lenkeliste<Legemiddel> legemidler = new Lenkeliste<Legemiddel>();
-        Lenkeliste<Resept> resepter = new Lenkeliste<Resept>();
-        SortertLenkeliste<Lege> leger = new SortertLenkeliste<Lege>();
-    
+        
         //initialisering av program
-        skrivFraFil("plassholder");
+        skrivFraFil("storFil.txt");
         // Kommandoloekke
         while (valg != 6){
             skrivMeny();
@@ -23,7 +23,7 @@ public class Legesystem {
 
             // skriver ut fullstendig oversikt over pasienter, leger, legemidler og reseptar
             if (valg == 1){
-                System.out.println("meny 1");
+                System.out.println("plassholder for meny 1");
                 skrivUtOversikt();
                 gaaTilbake();
             }
@@ -31,7 +31,7 @@ public class Legesystem {
 
             //Oppretter og legger til nye elementer i systemet
             else if (valg == 2){
-                System.out.println("meny 2");
+                System.out.println("plassholder for meny 2");
                 leggTilElementer();
                 gaaTilbake();
             }
@@ -39,7 +39,7 @@ public class Legesystem {
 
             //bruker en gitt resept fra listen til en pasient
             else if (valg == 3){
-                System.out.println("meny 3");
+                System.out.println("plassholder for meny 3");
                 brukResept();
                 gaaTilbake();
             }
@@ -47,7 +47,7 @@ public class Legesystem {
 
             //undermeny for aa skrive ut forskjellig statestikk
             else if (valg == 4){
-                System.out.println("meny 4");
+                System.out.println("plassholder for meny 4");
                 skrivUtStatestikk();
                 gaaTilbake();
             }
@@ -55,20 +55,22 @@ public class Legesystem {
 
             //skriver all data til fil
             else if(valg == 5){
-                System.out.println("meny 5");
+                System.out.println("plassholder for meny 5");
                 skrivAlleDataTilFil();
                 gaaTilbake();
             }
 
         }
         //kommandoloekka er ferdig
-        System.out.println("avslutter");
+        System.out.println("avslutter...");
     }
 
     
 
     /*
-    Metodar som blir brukt i oppgave E
+        skrivFrafil leser inn linjer og legger til riktig type element
+        innesingsfilene kan inneholde feil, disse linjene og feil blir printa til terminal
+        og blir ikkje lagt inn. 
 
     */
 
@@ -87,104 +89,143 @@ public class Legesystem {
 
                 //Legger til pasienter
                 else if (i == 1){
-                    String navn = biter[0];
-                    String foedselsNr = biter[1];
-                    pasienter.leggTil(new Pasient(navn,foedselsNr));  
+                    try{
+                        String navn = biter[0];
+                        String foedselsNr = biter[1];
+                        pasienter.leggTil(new Pasient(navn,foedselsNr));
+
+                    }catch(Exception e){
+                        System.out.println("Kunne ikkje legge til linje: "+linje);
+                    }
+                      
                 }
 
                 //Legger til legemidler
                 else if (i == 2){
-                    String navn = biter[0];
-                    String type = biter[1];
-                    int pris = Integer.parseInt(biter[2]);
-                    double virkestoff = Double.parseDouble(biter[3]);
-                    
-                    //sjekker kva type legemiddel som skal lages og legger det til i legemidler
-                    if (biter.length == 5){
-                        int styrke = Integer.parseInt(biter[4]);
-                       
-                        if (type.equals("vanedannende")){
-                            legemidler.leggTil(new Vanedannende(navn, pris, virkestoff, styrke));
+                    try{
+                        String navn = biter[0];
+                        String type = biter[1];
+                        double Dpris = Double.parseDouble(biter[2]);
+                        int pris = (int) Dpris;
+                        double virkestoff = Double.parseDouble(biter[3]);
+                        
+                        //sjekker kva type legemiddel som skal lages og legger det til i legemidler
+                        if (biter.length == 5){
+                            int styrke = Integer.parseInt(biter[4]);
+                           
+                            if (type.equals("vanedannende")){
+                                legemidler.leggTil(new Vanedannende(navn, pris, virkestoff, styrke));
+                            }
+                            else if (type.equals("narkotisk")){
+                                legemidler.leggTil(new Narkotisk(navn, pris, virkestoff, styrke));
+                            }
                         }
-                        else if (type.equals("narkotisk")){
-                            legemidler.leggTil(new Narkotisk(navn, pris, virkestoff, styrke));
+                        else{
+                            legemidler.leggTil(new Vanlig(navn, pris, virkestoff));
                         }
+                    }catch(Exception e){
+                        System.out.println("Kunne ikkje legge til linje: "+linje);
                     }
-                    else{
-                        legemidler.leggTil(new Vanlig(navn, pris, virkestoff));
-                    }  
+                      
                 }
 
                 //legger til leger
                 else if (i == 3){
-                    String navn = biter[0];
-                    String kontrollID = biter[1];
-                    if (kontrollID.equals("0")){
-                        leger.leggTil(new Lege(navn));
-                    }else{
-                        leger.leggTil(new Spesialist(navn, kontrollID));
+                    try{
+                        String navn = biter[0];
+                        String kontrollID = biter[1];
+                        if (kontrollID.equals("0")){
+                            leger.leggTil(new Lege(navn));
+                        }else{
+                            leger.leggTil(new Spesialist(navn, kontrollID));
+                        }
+                    }catch(Exception e){
+                        System.out.println("Kunne ikkje legge til linje: "+linje);
                     }
+                    
                 }
 
                 //legger til resepter
                 else if (i == 4){
-                    int legemiddelnummer = Integer.parseInt(biter[0]);
-                    String legeNavn = biter[1];
-                    int pasientID = Integer.parseInt(biter[2]);
-                    String type = biter[3];
-                    int reit;
+                    try{
+                        int legemiddelnummer = Integer.parseInt(biter[0]);
+                        String legeNavn = biter[1];
+                        int pasientID = Integer.parseInt(biter[2]);
+                        String type = biter[3];
+                        int reit = 0;
 
-                    Legemiddel legemiddel;
-                    Pasient pasient;
-                    Lege lege;
-                    Pasient pasient;
+                        Legemiddel legemiddel = null;
+                        Pasient pasient = null;
+                        Lege lege = null;
+                        
 
-                    if (biter.length == 5){
-                        reit = Integer.parseInt(biter[4]);
-                    }
-            
-                    //for lokkene henter objektene fra legemiddelnummer, legeNavn og pasientID
-                    for (Legemiddel l : legemidler){
-                        if (l.hentId() == legemiddelnummer){
-                            legemiddel = l;
+                        if (biter.length == 5){
+                            reit = Integer.parseInt(biter[4]);
                         }
-                    }
-                    for (Lege l : leger){
-                        if (l.hentNavn().equals(legeNavn)){
-                            lege = l;
+                
+                        //for lokkene henter objektene fra legemiddelnummer, legeNavn og pasientID
+                        for (Legemiddel l : legemidler){
+                            if (l.hentId() == legemiddelnummer){
+                                legemiddel = l;
+                            }
                         }
-                    }
-                    for (Pasient p : pasienter){
-                        if (p.hentID() == pasientID){
-                            pasient = p;
+                        if (legemiddel == null){
+                            System.out.println("\nFant ikke legemiddelet med nummer:" +legemiddelnummer);
                         }
-                    }
 
-                    //sjekker kva type resept som skal lages og legger den til i resepter
-                    if (type.equals("hvit")){
-                        resepter.leggTil(new HvitResept(legemiddel, lege, pasient, reit));
-                    }
-                    else if (type.equals("blaa")){
-                        resepter.leggTil(new BlaaResept(legemiddel, lege, pasient, reit));
-                    }
-                    else if (type.equals("militaer")){
-                        resepter.leggTil(new MilitaerResept(legemiddel, lege, pasient, reit));
-                    }
-                    else if (type.equals("p")){
-                        resepter.leggTil(new PResept(legemiddel, lege, pasient));
-                    }
+                        for (Lege l : leger){
+                            if (l.hentNavn().equals(legeNavn)){
+                                lege = l;
+                            }
+                        }
+                        if(lege == null){
+                            System.out.println("\nFant ikke legen med navn: "+ legeNavn);
+                        }
 
+                        for (Pasient p : pasienter){
+                            if (p.hentID() == pasientID){
+                                pasient = p;
+                            }
+                        }
+                        if(pasient == null){
+                            System.out.println("\nFant ikke pasienten med id: " + pasientID);
+                        }
+
+                        //sjekker kva type resept som skal lages og legger den til i resepter
+                        if (type.equals("hvit")){
+                            resepter.leggTil(new HvitResept(legemiddel, lege, pasient, reit));
+                        }
+                        else if (type.equals("blaa")){
+                            resepter.leggTil(new BlaaResept(legemiddel, lege, pasient, reit));
+                        }
+                        else if (type.equals("militaer")){
+                            resepter.leggTil(new MilitaerResept(legemiddel, lege, pasient, reit));
+                        }
+                        else if (type.equals("p")){
+                            resepter.leggTil(new PResept(legemiddel, lege, pasient));
+                        }
+
+                    }catch(Exception e){
+                        System.out.println("Kunne ikkje legge til linje: "+linje);
+                    }
                 }
-
-
-
             }
+        //her fanger vi opp fileNotFound, og lar brukeren skrive inn nytt filnavn
         }catch (FileNotFoundException e){
-            System.out.println("Ugyldig filnavn! Skriv inn riktig filnavn >");
+            System.out.println("Ugyldig filnavn! Skriv inn riktig filnavn (skriv 'm' for aa gaa til hovedmeny) >");
             Scanner inp = new Scanner(System.in);
-            skrivFraFil(inp.nextLine());
+            String str = inp.nextLine();
+            if(str.equals("m")){
+                System.out.println("returnerer..");
+            }else{
+                skrivFraFil(str);
+            }
+            
         }
-        
+        //venter med aa gaa til hovedmeny dersom bruker vi sjaa feilmeldingar
+        Scanner videre = new Scanner(System.in);
+        System.out.println("\n============================================ \n|| Trykk 'enter' for aa gaa til hovedmeny ||\n============================================");
+        videre.nextLine();
     }
 
     public static void skrivUtOversikt(){}

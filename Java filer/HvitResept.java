@@ -3,8 +3,8 @@
 public class HvitResept extends Resept{
 
     //Kaller paa superklassen sin konstruktoer
-    HvitResept(Legemiddel legemiddel, Lege lege, int pasientId, int reit){
-        super(legemiddel, lege, pasientId, reit);
+    HvitResept(Legemiddel legemiddel, Lege lege, Pasient pasient, int reit){
+        super(legemiddel, lege, pasient, reit);
     }
 
     //returnerer reseptens farge
@@ -13,7 +13,7 @@ public class HvitResept extends Resept{
         return "hvit ";
     }
 
-    //returnerer prisen aa betale 
+    //returnerer prisen aa betale
     @Override
     public int prisAaBetale(){
         return pris;
