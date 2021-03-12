@@ -4,7 +4,7 @@ class Pasient{
   String fodselsnr;
   int pasientID;
 
-  private static int pasID = 0;
+  private static int pasID = 1;
   Stabel<Resept> reseptStabel = new Stabel<Resept>();
 
 
