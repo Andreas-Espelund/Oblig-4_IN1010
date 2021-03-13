@@ -233,7 +233,52 @@ public class Legesystem {
         videre.nextLine();
     }
 
-    public static void skrivUtOversikt(){}
+    public static void skrivUtOversikt(){
+      System.out.println("\n\n==========OVERSIKT OVER LEGER, LEGEMIDDEL, RESEPTER & PASIENTER==========\n");
+      //Oppdateres når oppgave D er gjort - "Leger skal skrives ut i ordnet rekkefølge"
+      System.out.println("================LEGER=================");
+
+      int l = 0;
+      for (Lege lege : leger){
+        System.out.println(l + ": " + lege);
+        l++;
+      }
+
+      System.out.println("======================================");
+
+
+      System.out.println("\n================LEGEMIDDELOVERSIKT================");
+
+      int lm = 0;
+      for(Legemiddel legemiddel : legemidler){
+        System.out.println(lm + ": " + legemiddel);
+        lm++;
+      }
+
+      System.out.println("===================================================");
+
+      //Da det er noe rart i resepter fungerer ikke denne uten å stoppe programmet, fikser når dette er løst.
+      System.out.println("\n================RESEPTOVERSIKT================");
+
+      // int r = 0;
+      // for(Resept resept : resepter){
+      //   System.out.println(r + ": " + resept);
+      //   r++;
+      // }
+
+      System.out.println("==============================================");
+
+      System.out.println("\n================PASIENTOVERSIKT================");
+
+      int p = 0;
+      for(Pasient pasient : pasienter){
+        System.out.println(p + ": " + pasient);
+        p++;
+      }
+
+      System.out.println("===============================================");
+
+    }
 
     public static void leggTilElementer(){}
 
