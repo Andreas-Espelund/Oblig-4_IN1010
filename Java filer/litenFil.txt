@@ -9,7 +9,7 @@ Paralgin Forte,vanedannende,65,400,5
 Placebo Pianissimo,vanlig,10,0
 Ibux,vanlig,240,200
 # Leger (navn,kontrollid / 0 hvis vanlig lege)
-Dr. Cox,0 
+Dr. Cox,0
 Dr. Wilson,0
 Dr. House,12345
 Dr. Hillestad Lovold,0
