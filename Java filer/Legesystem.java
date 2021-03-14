@@ -9,7 +9,7 @@ public class Legesystem {
     private static Lenkeliste<Pasient> pasienter = new Lenkeliste<Pasient>();
     private static Lenkeliste<Legemiddel> legemidler = new Lenkeliste<Legemiddel>();
     private static Lenkeliste<Resept> resepter = new Lenkeliste<Resept>();
-    private static Lenkeliste<Lege> leger = new Lenkeliste<Lege>();
+    private static SortertLenkeliste<Lege> leger = new SortertLenkeliste<Lege>();
     public static void main(String[] args)throws FileNotFoundException {
 
         int valg = 0;
@@ -17,8 +17,8 @@ public class Legesystem {
         //initialisering av program
         skrivFraFil("storFil.txt");
         // Kommandoloekke
-
         
+    
         while (valg != 6){
             skrivMeny();
             valg = taInput(1,6);

@@ -18,6 +18,7 @@ abstract class Resept{
         
         pris = legemiddel.hentPris();
         pasient.leggTilResept(this);
+        lege.settInnResept(this);
         
 
     }
@@ -66,6 +67,6 @@ abstract class Resept{
     //toString returnerer informasjon om resepten
     public String toString(){
         return "ID: " + id + " | Legemiddel: " + legemiddel.hentNavn() +
-        " | Lege: " + lege + " | Pasient ID: " + hentPasientId() + " | Reit: " + reit + " | Pris aa betale: " + this.prisAaBetale();
+        " | Lege: " + lege.hentNavn() + " | Pasient ID: " + hentPasientId() + " | Reit: " + reit + " | Pris: " + this.prisAaBetale();
     }
 }
