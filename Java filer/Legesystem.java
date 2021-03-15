@@ -1,8 +1,6 @@
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.io.IOException;
 import java.io.File;
 
 
@@ -15,23 +13,22 @@ public class Legesystem {
     public static void main(String[] args)throws FileNotFoundException {
 
         int valg = 0;
-        
+
         //initialisering av program
         skrivFraFil("storFil.txt");
         // Kommandoloekke
-        
-    
+
+
         while (valg != 6){
             skrivMeny();
             valg = taInput(1,6);
 
             // skriver ut fullstendig oversikt over pasienter, leger, legemidler og reseptar
             if (valg == 1){
-                
                 skrivUtOversikt();
                 gaaTilbake();
             }
-            
+
 
             //Oppretter og legger til nye elementer i systemet
             else if (valg == 2){
@@ -43,7 +40,6 @@ public class Legesystem {
 
             //bruker en gitt resept fra listen til en pasient
             else if (valg == 3){
-                
                 brukResept();
                 gaaTilbake();
             }
@@ -51,7 +47,6 @@ public class Legesystem {
 
             //undermeny for aa skrive ut forskjellig statestikk
             else if (valg == 4){
-                System.out.println("plassholder for meny 4");
                 skrivUtStatestikk();
                 gaaTilbake();
             }
@@ -59,7 +54,7 @@ public class Legesystem {
 
             //skriver all data til fil
             else if(valg == 5){
-                
+                System.out.println("plassholder for meny 5");
                 skrivAlleDataTilFil();
                 gaaTilbake();
             }
@@ -69,12 +64,11 @@ public class Legesystem {
         System.out.println("avslutter...");
     }
 
-    
+
     /*
         skrivFrafil leser inn linjer og legger til riktig type element
         innesingsfilene kan inneholde feil, disse linjene og feil blir printa til terminal
-        og blir ikkje lagt inn. 
-
+        og blir ikkje lagt inn.
     */
     public static void skrivFraFil(String filnavn)throws FileNotFoundException{
         try{
@@ -99,7 +93,7 @@ public class Legesystem {
                     }catch(Exception e){
                         System.out.println("Kunne ikkje legge til linje: "+linje);
                     }
-                      
+
                 }
 
                 //Legger til legemidler
@@ -110,11 +104,11 @@ public class Legesystem {
                         double Dpris = Double.parseDouble(biter[2]);
                         int pris = (int) Dpris;
                         double virkestoff = Double.parseDouble(biter[3]);
-                        
+
                         //sjekker kva type legemiddel som skal lages og legger det til i legemidler
                         if (biter.length == 5){
                             int styrke = Integer.parseInt(biter[4]);
-                           
+
                             if (type.equals("vanedannende")){
                                 legemidler.leggTil(new Vanedannende(navn, pris, virkestoff, styrke));
                             }
@@ -128,7 +122,7 @@ public class Legesystem {
                     }catch(Exception e){
                         System.out.println("Kunne ikkje legge til linje: "+linje);
                     }
-                      
+
                 }
 
                 //legger til leger
@@ -136,7 +130,7 @@ public class Legesystem {
                     try{
                         String navn = biter[0];
                         String kontrollID = biter[1].strip();
-                        
+
                         if (kontrollID.equals("0")){
                             leger.leggTil(new Lege(navn));
                         }else{
@@ -145,7 +139,7 @@ public class Legesystem {
                     }catch(Exception e){
                         System.out.println("Kunne ikkje legge til linje: "+linje);
                     }
-                    
+
                 }
 
                 //legger til resepter
@@ -154,61 +148,61 @@ public class Legesystem {
                         int legemiddelnummer = Integer.parseInt(biter[0]);
                         String legeNavn = biter[1];
                         int pasientID = Integer.parseInt(biter[2]);
-                        
+
                         String type = biter[3].strip();
                         int reit = 0;
 
                         Legemiddel legemiddel = null;
                         Pasient pasient = null;
                         Lege lege = null;
-                        
+
 
                         if (biter.length == 5){
                             reit = Integer.parseInt(biter[4]);
                         }
-                
+
                         //for lokkene henter objektene fra legemiddelnummer, legeNavn og pasientID
                         for (Legemiddel l : legemidler){
                             if (l.hentId() == legemiddelnummer){
                                 legemiddel = l;
                             }
                         }
-                        
+
                         for (Lege l : leger){
                             if (l.hentNavn().equals(legeNavn)){
                                 lege = l;
                             }
                         }
-                        
+
                         for (Pasient p : pasienter){
                             if (p.hentID() == pasientID){
                                 pasient = p;
                             }
                         }
-                        
+
 
                         //sjekker kva type resept som skal lages og legger den til i resepter
                         if (type.equals("hvit")){
                             Resept r = new HvitResept(legemiddel, lege, pasient, reit);
                             resepter.leggTil(r);
-                            
+
                         }
                         else if (type.equals("blaa")){
                             Resept r = new BlaaResept(legemiddel, lege, pasient, reit);
                             resepter.leggTil(r);
-                            
+
                         }
                         else if (type.equals("militaer") || type.equals("millitaer")){
                             Resept r = new MilitaerResept(legemiddel, lege, pasient, reit);
                             resepter.leggTil(r);
-                            
+
                         }
                         else if (type.equals("p")){
                             Resept r = new PResept(legemiddel, lege, pasient);
                             resepter.leggTil(r);
-                            
+
                         }
-                        
+
 
                     }catch(Exception e){
                         System.out.println("Kunne ikkje legge til linje: "+linje);
@@ -225,7 +219,7 @@ public class Legesystem {
             }else{
                 skrivFraFil(str);
             }
-            
+
         }
         //venter med aa gaa til hovedmeny dersom bruker vi sjaa feilmeldingar
         Scanner videre = new Scanner(System.in);
@@ -257,7 +251,7 @@ public class Legesystem {
 
       System.out.println("===================================================");
 
-      //Da det er noe rart i resepter fungerer ikke denne uten å stoppe programmet, fikser når dette er løst.
+
       System.out.println("\n================RESEPTOVERSIKT================");
 
       int r = 0;
@@ -286,50 +280,43 @@ public class Legesystem {
         // Skriver ut alle pasientene som det er resepter for:
         int teller = 0;
         System.out.print("Kva for ein pasient vil du sjå reseptane til:\n");
-  
+
         //Itererer gjennom listen av pasienter og skriver ut med ett nummer forran:
         for (Pasient pasient : pasienter){
           System.out.println(teller + ": " + pasient.navn + "(fnr: " + pasient.fodselsnr + ")");
           teller ++;
         }
-  
+
         //Tar imot input fra bruker, hvor nummer skal stemme med pasientens nummer i utskriften:
-        
+
         int i = taInput(0, teller);
         Pasient valgtPas = null;
         //Sjekker at inputen er en av pasientene:
-        
+
         valgtPas = pasienter.hent(i);
         System.out.println("\nValgt pasient: " + valgtPas.navn +"(fnr: " + valgtPas.fodselsnr + ").");
-        
+
         if (valgtPas.hentResepter().stoerrelse() == 0){
             System.out.println(valgtPas.hentNavn() + " har ingen resepter!");
         }else{
             System.out.println("Kva for ein resept onsker du aa bruke?\n");
-  
+
             //Skriver ut de reseptene som hører til pasienten som er valgt:
             teller = 0;
-            // int valgtPasID = valgtPas.hentID();
             //Itererer gjennom reseptene:
             for(Resept resept : valgtPas.hentResepter() ){
-              // Legger her inn tyr-catch fordi jeg ikke skjønner hva som går galt her...
-              
               //Om resepten har samme pasientID som den valgte pasienten:
-              
                 System.out.println(teller + ": " + resept.hentLegemiddel().hentNavn() + "(" + resept.hentReit() + " reit).");
-                
                 teller ++;
-              
-            
           }
-      
+
              //Tar imot input fra bruker, hvor nummer skal stemme med resept i utskriften:
-          
+
             int r = taInput(0, teller-1);
-      
+
             Resept valgtRes = null;
             //Sjekker at inputen er en av pasientene:
-          
+
             valgtRes = valgtPas.hentResepter().hent(r);
             System.out.println("Valgt pasient: " + valgtPas.navn +"(fnr: " + valgtPas.fodselsnr + ").");
             if(valgtRes.bruk()){
@@ -337,93 +324,205 @@ public class Legesystem {
             }else{
                 System.out.println("Kunne ikke bruke resept paa" + valgtRes.hentLegemiddel().hentNavn() + "(ingen gjenvarende reit).");
             }
-        
-      
-      
-        }
-   
-        
-    }
-
-    public static void skrivUtStatestikk(){}
-
-    public static void skrivAlleDataTilFil(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Tast inn filnavn:");
-        String filnavn = sc.nextLine()+".txt";
-        File file = new File(filnavn);
-        FileWriter fr = null;
-        try {
-            fr = new FileWriter(file);
-            fr.write("# Pasienter (navn, fnr)\n");
-
-            for (Pasient p : pasienter){
-                fr.write(p.hentNavn() + ","+p.hentFoedselsnummer()+"\n");
-            }
-
-            fr.write("# Legemidler (navn,type,pris,virkestoff,[styrke])\n");
-            for (Legemiddel lm : legemidler){
-                fr.write(lm.hentNavn());
-                if (lm instanceof Vanlig){
-                    fr.write(",vanlig");
-                }else if(lm instanceof Vanedannende){
-                    fr.write(",vanedannende");
-                }else if(lm instanceof Narkotisk){
-                    fr.write(",narkotisk");
-                }
-                fr.write(","+lm.hentPris()+","+ lm.hentVirkestoff());
-                if(lm instanceof Narkotisk){
-                    Narkotisk n = (Narkotisk) lm;
-                    fr.write(","+ n.hentNarkotiskStyrke());
-                }else if(lm instanceof Vanedannende){
-                    Vanedannende v = (Vanedannende) lm;
-                    fr.write("," + v.hentVanedannendeStyrke());
-                }
-                fr.write("\n");
-            }
-
-            fr.write("# Leger (navn,kontrollid / 0 hvis vanlig lege)");
-            for (Lege l : leger){
-                fr.write(l.hentNavn()+",");
-                if (l instanceof Spesialist){
-                    Spesialist s = (Spesialist) l;
-                    fr.write(s.hentKontrollID() + "\n");
-                }else{
-                    fr.write("0\n");
-                }
-            }
-
-            fr.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])");
-            for (Resept r : resepter){
-                fr.write(r.hentId()+","+r.hentLege().hentNavn()+","+r.hentPasientId()+",");
-                if(r instanceof HvitResept){
-                    fr.write("hvit");
-                }else if(r instanceof BlaaResept){
-                    fr.write("blaa");
-                }else if (r instanceof MilitaerResept){
-                    fr.write("militaer");
-                }else if (r instanceof PResept){
-                    fr.write("p");
-                }
-                if (!(r instanceof PResept)){
-                    fr.write(","+r.hentReit());
-                }
-                fr.write("\n");
-            }
-            System.out.println("Utskrift til '"+ filnavn +"' fullfoert!");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
-            //close resources
-            try {
-                fr.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
-     
+
+    public static void skrivUtStatestikk(){
+      int valg = 0;
+      while (valg != 5){
+
+        //MENYEN:
+        statMeny();
+        valg = taInput(1,5);
+
+        //Vanedannende:
+        if(valg == 1){
+          int antVane = 0;
+
+          //Teller resepter med vanedannende legemiddel
+          for (Resept r : resepter){
+            if(r.hentLegemiddel() instanceof Vanedannende){
+              antVane ++;
+            }
+          }
+
+          System.out.println("\nTotal antall utskrevne resepter av typen vanedannende legemidler: " + antVane + "\n");
+
+          gaaTilbake();
+
+        }
+
+      //Narkotiske:
+      else if(valg == 2){
+        int antNark = 0;
+
+        //Teller antall resepter med narkotisk legemiddel:
+        for (Resept r : resepter){
+          if(r.hentLegemiddel() instanceof Narkotisk){
+            antNark ++;
+          }
+        }
+
+        System.out.println("\nTotal antall utskrevne resepter av typen narkotiske legemidler: " + antNark + "\n");
+
+        gaaTilbake();
+
+      }
+
+      // Missbruk:
+      // Lege som har skrivd ut Narkotisk resept:
+      if(valg == 3){
+        System.out.println();
+
+        //For hver lege:
+        for(Lege lege : leger){
+          int tellSpes = 0;
+          int tellUspes = 0;
+
+          if(lege instanceof Spesialist){
+            Lenkeliste<Resept> res = lege.hentReseptliste();
+
+            //Telles antall utskrevne resepter som er narkotisk og skrevet ut av lege med spesialisering:
+            for(Resept r : res){
+              if(r.hentLegemiddel() instanceof Narkotisk){
+                tellSpes ++;
+              }
+            // }
+          }
+
+          if (tellSpes != 0){
+            System.out.println(lege.hentNavn() + " har skrevet ut " + tellSpes + " narkotiske resepter og har konrollID.");
+
+          }
+        } else{
+          Lenkeliste<Resept> res = lege.hentReseptliste();
+
+          //Telles antall utskrevne resepter som er narkotisk men skrevet av ikke spesialisert lege:
+          for(Resept r : res){
+            if(r.hentLegemiddel() instanceof Narkotisk){
+              tellUspes ++;
+            }
+          // }
+        }
+
+        if (tellUspes != 0){
+          System.out.println(lege.hentNavn() + " har skrevet ut " + tellUspes + " narkotiske resepter men har IKKE kontrollID.");
+        }
+      }
+
+      }
+      System.out.println();
+      gaaTilbake();
+    }
+
+      //pasient med gyldig reit på narkotisk resept:
+      if(valg == 4) {
+        System.out.println();
+
+        //For hver pasient:
+        for (Pasient pas : pasienter){
+          int tell = 0;
+          Stabel<Resept> res = pas.hentResepter();
+
+          //Teller hvor mange narkotiske resepter som er gyldige:
+          for(Resept r : res){
+            if(r.hentLegemiddel() instanceof Narkotisk && r.hentReit() > 0){
+              tell++;
+            }
+          }
+
+          if(tell != 0){
+            System.out.println(pas.hentNavn() + " har " + tell + " gyldige narkotiske resepter.");
+
+          }
+        }
+        System.out.println();
+        gaaTilbake();
+
+      }
+    }
+    // Tilbake til hovedmenyen:
+    System.out.println("Tilbake til hovedmeny...");
+  }
+
+
+
+  public static void skrivAlleDataTilFil(){
+  Scanner sc = new Scanner(System.in);
+  System.out.println("Tast inn filnavn:");
+  String filnavn = sc.nextLine()+".txt";
+  File file = new File(filnavn);
+  FileWriter fr = null;
+  try {
+      fr = new FileWriter(file);
+      fr.write("# Pasienter (navn, fnr)\n");
+
+      for (Pasient p : pasienter){
+          fr.write(p.hentNavn() + ","+p.hentFoedselsnummer()+"\n");
+      }
+
+      fr.write("# Legemidler (navn,type,pris,virkestoff,[styrke])\n");
+      for (Legemiddel lm : legemidler){
+          fr.write(lm.hentNavn());
+          if (lm instanceof Vanlig){
+              fr.write(",vanlig");
+          }else if(lm instanceof Vanedannende){
+              fr.write(",vanedannende");
+          }else if(lm instanceof Narkotisk){
+              fr.write(",narkotisk");
+          }
+          fr.write(","+lm.hentPris()+","+ lm.hentVirkestoff());
+          if(lm instanceof Narkotisk){
+              Narkotisk n = (Narkotisk) lm;
+              fr.write(","+ n.hentNarkotiskStyrke());
+          }else if(lm instanceof Vanedannende){
+              Vanedannende v = (Vanedannende) lm;
+              fr.write("," + v.hentVanedannendeStyrke());
+          }
+          fr.write("\n");
+      }
+
+      fr.write("# Leger (navn,kontrollid / 0 hvis vanlig lege)");
+      for (Lege l : leger){
+          fr.write(l.hentNavn()+",");
+          if (l instanceof Spesialist){
+              Spesialist s = (Spesialist) l;
+              fr.write(s.hentKontrollID() + "\n");
+          }else{
+              fr.write("0\n");
+          }
+      }
+
+      fr.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])");
+      for (Resept r : resepter){
+          fr.write(r.hentId()+","+r.hentLege().hentNavn()+","+r.hentPasientId()+",");
+          if(r instanceof HvitResept){
+              fr.write("hvit");
+          }else if(r instanceof BlaaResept){
+              fr.write("blaa");
+          }else if (r instanceof MilitaerResept){
+              fr.write("militaer");
+          }else if (r instanceof PResept){
+              fr.write("p");
+          }
+          if (!(r instanceof PResept)){
+              fr.write(","+r.hentReit());
+          }
+          fr.write("\n");
+      }
+      System.out.println("Utskrift til '"+ filnavn +"' fullfoert!");
+
+  } catch (IOException e) {
+      e.printStackTrace();
+  }finally{
+      //close resources
+      try {
+          fr.close();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+  }
+}
 
     public static void leggTilLege(){}
 
@@ -439,7 +538,7 @@ public class Legesystem {
         for (int i = 0; i < 30 ; i ++){
             System.out.println();
         }
-    
+
         System.out.println("========LEGESYSTEM========");
         System.out.println("|1.| Skriv ut oversikt   |");
         System.out.println("|2.| Legg til            |");
@@ -448,7 +547,7 @@ public class Legesystem {
         System.out.println("|5.| Skriv data til fil  |");
         System.out.println("|6.| Avslutt             |");
         System.out.println("==========================");
-        
+
     }
 
     //tar input fra bruker med scanner og lar kun brukaren skrive heiltall mellom 1 og 6
@@ -463,12 +562,12 @@ public class Legesystem {
                 i = taInput(start,slutt);
             }
             return i;
-        //catch blokka fanger opp om brukeren skriver inn tegn som ikkje er en int   
+        //catch blokka fanger opp om brukeren skriver inn tegn som ikkje er en int
         }catch(InputMismatchException e){
             System.out.println("Ugyldig inntasting! Kun heltall!");
             return taInput(start,slutt);
         }
-        
+
     }
 
     //ventar til brukeren trykker paa enter for aa gaa tilbake til hovedmenyen
@@ -476,5 +575,19 @@ public class Legesystem {
         Scanner sc = new Scanner(System.in);
         System.out.print("Trykk 'enter' for aa gaa tilbake >");
         sc.nextLine();
+    }
+
+    public static void statMeny(){
+      for (int i = 0; i < 10 ; i ++){
+          System.out.println();
+      }
+
+      System.out.println("====================STATESTIKK-MENY====================");
+      System.out.println("|1.| Utskrevne vanedannende resepter                   |");
+      System.out.println("|2.| Utskrevne narkotiske resepter                     |");
+      System.out.println("|3.| Narkotiske resepter av lege og antall per lege    |");
+      System.out.println("|4.| Pasient med narkotisk resept og antall gyldige    |");
+      System.out.println("|5.| Tilbake til hovedmeny                             |");
+      System.out.println("=======================================================");
     }
 }
