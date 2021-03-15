@@ -390,9 +390,29 @@ public class Legesystem {
 
     public static void skrivAlleDataTilFil(){}
 
-    public static void leggTilLege(){}
+    public static void leggTilLege(){
+        // Oppretter scanner-objekt
+        Scanner tastatur = new Scanner(System.in);
 
-    public static void leggTilPasient(){}
+        // Henter informasjon fra bruker og legger til
+        System.out.print("Navn (Lege): ");
+        String legeNavn = tastatur.nextLine();
+        leger.leggTil(new Lege(legeNavn));
+        System.out.println("Lege " + legeNavn + " er lagt til.");
+    }
+
+    public static void leggTilPasient(){
+        // Oppretter scanner-objekt
+        Scanner tastatur = new Scanner(System.in);
+
+        // Henter informasjon fra bruker og legger til
+        System.out.print("Navn (Pasient): ");
+        String pasientNavn = tastatur.nextLine();
+        System.out.print("Fodselsnummer (Pasient): ");
+        String fodselsnr = tastatur.nextLine();
+        pasienter.leggTil(new Pasient(pasientNavn, fodselsnr));
+        System.out.println("Pasient " + pasientNavn + " er lagt til.");
+    }
 
     public static void leggTilResept(){}
 
