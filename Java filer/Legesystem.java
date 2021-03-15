@@ -347,6 +347,7 @@ public class Legesystem {
 
     public static void skrivUtStatestikk(){}
 
+    //skriver data til fil
     public static void skrivAlleDataTilFil(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tast inn filnavn:");
