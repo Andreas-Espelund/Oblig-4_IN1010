@@ -1,0 +1,366 @@
+# Pasienter (navn, fnr)
+Fornavn Etternavn,20169916590
+Vladimir Shakun,20537634063
+Miroslaw Stefanski,14517407546
+Volodimyr Trots,25136686728
+Arkadiusz Orlicki,22748658674
+Igor Churbasov,29600576221
+David Holland,30294750666
+Jacobus Johannes Pronk,30032477003
+Frank Larsen,27855517762
+Erik Juhl Jensen,12583450960
+Elmo Dibiagio,15870155487
+Friedrich Hørl,29921255535
+Sigfus Jonsson,23753237546
+Stefan Heck,21136847667
+Leif Fredriksen,28268527621
+Francis Robert Stevenson,26154722987
+Dieter Freitag,14956730498
+øystein Holmen,21237670079
+Ulrich Heuberger,20162340170
+Susan Gayle Nordskog,16840888713
+Iury Litovchenco,11335557310
+Janet Bakke,24736233801
+Brian Anthony Farrelly,11184777122
+Stephen Alexander Faulkner,25343359751
+Damian Wood,29611171585
+Chris Skadberg,12720681401
+Robert Preller,12967921347
+Tage Bengt Olsson,16104573272
+Ove Rolf Oslund,10177383016
+Kenneth Westerlund,12249363007
+John Stewart Ball,15472173857
+Roland østrand,14234193515
+Matthias Peter,27494980869
+Anita Simon,13913336336
+Daniel Scheidegger,20073325559
+Klas Eriksson,22596579347
+Flemming Ryttertoft,18400030340
+Steven Gene Wold,14958820692
+Clain Laila Mc,20146566310
+Bent Brian Velling,13028973504
+Jacques Grosfils,19282714318
+Kent øke Strandberg,27765381532
+Alex Gordon,27570960780
+Zeljko Pinjusic,14677802286
+Michel Verheughe,21841903845
+Hans Jensen-Fangel,24392369893
+Bernhard Røsch,21167294058
+Dolores F. Lindholm Kinck,22487132725
+Patrice Bardoz,19954569726
+Gerald Markeson,14941366908
+Gerald Osen,21758300298
+Joerg Goetzinger,11582957134
+Malin Mutka,29221239486
+Allen Gwyn Coxe,16337719230
+Peter Grun,21786782967
+Andy Hyde,11046511913
+Sandra V. Arango Charry,25679033333
+Guillermo Issacs Aguilar Moreno,29499931803
+Pekka Lehtonen,20323638579
+Inger Stemland,11886562951
+Alfred Betti,17947882067
+Knut Terje Thomassen,21802407922
+Ole Kristian Bøe,17072774415
+Helge Lorentsen,30903336218
+øsmund Johannes Hellesøy,20410000501
+Gunnar Berntin Johansen,27855052229
+Hans Christian Hermansen,23433229436
+Aina Elisabeth Ellingsen,19984962393
+Arild Breilid,30708214138
+Torstein Tidemann,20165886015
+John Ivar Bjørkaas,23272443546
+Per Erik Mikalsen,10873789696
+Hans Kristian Ringvold,11209961716
+Jan Erik Nilssen,11142347439
+Odd Karsten Vøga,23639438826
+Stig Eriksen,27655799797
+Are Mikal Opsanger,21394424481
+Brynjar Kvanlid,27128880740
+Frode Ellingsen,25925163674
+Finn Audun Hørstad,21663584064
+Asbjørn Djupdal,23170084997
+Erik N Hardeng,22699069515
+Morten Olsen,20207710146
+Adele Berg Wasenden,24072304951
+Egil Sylte,30317580437
+Dag N Ness,14616379265
+øivind Paul Bakklund,13423175660
+Jo Morten Eide,16830434883
+Magne Møhre,17390851064
+andreas espelund,170100
+# Legemidler (navn,type,pris,virkestoff,[styrke])
+natriumfluorid,vanlig,709,428.05126343015183
+natriummonofluorofosfat,vanlig,1061,559.9445911710575
+oaflur,vanedannende,622,277.8892457565651,5
+tinnfluorid,narkotisk,1161,452.6077472376364,0
+kombinasjoner,narkotisk,213,451.147798943133,5
+hydrogenperoksid,narkotisk,1127,264.463203346841,10
+klorheksidin,narkotisk,1077,871.741174099244,3
+amfotericin B,narkotisk,221,726.8994746823491,6
+polynoksylin,vanlig,232,630.8397435414265
+domifen,vanedannende,155,530.7035424048302,8
+oksykinolin,vanedannende,536,736.7449389407051,10
+neomycin,vanlig,1252,546.7300920010557
+mikonazol,vanedannende,510,783.0423294150947,10
+natamycin,narkotisk,455,492.03305470409896,9
+diverse,vanlig,848,796.3557844878794
+heksetidin,vanedannende,1131,626.7738086430918,4
+tetracyklin,vanedannende,1159,293.65916913218416,2
+benzoksoniumklorid,vanedannende,1296,847.8349617206811,2
+tibezoniumjodid,narkotisk,388,22.65759341220933,5
+mepartricin,vanedannende,666,158.55763879801702,3
+metronidazol,vanedannende,1099,151.50169058663153,2
+klotrimazol,vanedannende,164,340.9052170627964,8
+natriumperborat,vanedannende,212,126.67149988623528,3
+kortetracyklin,vanedannende,722,548.3506902625262,3
+doksycyklin,vanedannende,727,785.8855515516815,4
+minocyklin,vanlig,734,552.5036969049936
+triamcinolon,vanedannende,764,957.0810524143762,5
+dexametason,narkotisk,908,706.0927048743193,10
+hydrokortison,vanlig,530,824.5938939275114
+adrenalin,vanedannende,1292,700.3711364601465,7
+benzydamin,vanlig,1195,245.6127374718241
+acetylsalisylsyre,vanedannende,212,298.40637920360814,2
+adrenalon,vanedannende,556,632.5823734350929,0
+amlexanox,vanlig,770,104.0972000524286
+bekaplermin,narkotisk,942,145.57201179998606,3
+diverse,vanlig,220,393.7417212323659
+magnesiumkarbonat,narkotisk,703,472.5570426968118,0
+magnesiumoksid,vanlig,1029,10.783386736657006
+magnesiumperoksid,narkotisk,1131,827.5820500032319,0
+magnesiumhydroksid,narkotisk,522,101.96908943834646,4
+magnesiumsilikat,narkotisk,426,837.5700327401382,1
+kombinasjoner,narkotisk,586,872.4638650723615,10
+aluminiumhydroksid,vanlig,233,320.16475773352624
+algeldrat,vanedannende,1139,994.3230794427076,2
+aluminiumfosfat,vanedannende,236,413.8859669572418,6
+dihydroksyaluminium natriumkarbonat,vanlig,749,666.2912466657438
+aluminiumacetoacetat,vanlig,258,954.5289367455246
+aloglutamol,narkotisk,1278,604.0661835679612,7
+aluminiumglysinat,vanlig,328,971.0333768358685
+kombinasjoner,vanlig,378,635.0125236065269
+kalsiumkarbonat,vanedannende,804,297.89865592731206,10
+kalsiumsilikat,narkotisk,307,458.54933076692777,7
+kombinasjoner,narkotisk,1167,965.085473093835,8
+ordinære saltkombinasjoner,vanedannende,177,776.3576492482617,0
+magaldrat,vanlig,1049,248.3623488578515
+almagat,vanlig,1166,739.6279324854145
+hydrotalcit,vanlig,299,994.3556399877629
+almasilat,vanedannende,832,917.0115292128651,1
+magaldrat og midler mot flatulens,vanlig,853,153.79709153513738
+ordinære saltkombinasjoner og midler mot flatulens,narkotisk,460,363.9368301216411,3
+cimetidin,narkotisk,1059,782.0381457815477,7
+ranitidin,vanlig,1089,510.25186510556875
+famotidin,vanlig,829,730.321966933497
+nizatidin,vanedannende,1339,585.3501374320285,8
+niperotidin,narkotisk,103,6.975251091800161,0
+roxatidin,vanedannende,876,467.8397254116609,10
+ranitidinvismutsitrat,vanedannende,787,427.06273795681165,10
+lafutidin,vanlig,600,409.06423213054376
+misoprostol,narkotisk,730,304.13466375928755,6
+enprostil,narkotisk,1209,439.6292035882693,8
+omeprazol,vanedannende,625,992.0419313320081,7
+pantoprazol,vanedannende,1035,984.8020687515877,0
+lansoprazol,vanedannende,598,536.3535842153797,6
+rabeprazol,narkotisk,665,714.5508455529239,8
+esomeprazol,vanlig,1136,868.1427010715756
+dekslansoprazol,vanlig,262,897.288758745419
+dexrabeprazol,narkotisk,981,66.23492365569223,6
+vonoprazan,narkotisk,1299,168.17763116172483,6
+karbenoxolon,vanlig,454,614.8169120007348
+sukralfat,vanedannende,830,761.0105570683271,0
+pirenzepin,narkotisk,584,829.5637358924346,7
+metiosulfoniumklorid,vanlig,737,244.86995108415059
+vismut subsitrat,vanlig,507,406.0109781066982
+proglumid,vanedannende,1240,756.2113719083368,7
+gefarnat,narkotisk,989,288.26105216314284,2
+sulglikotid,vanedannende,989,215.68966143595733,0
+acetoxolon,vanedannende,936,304.5116078109094,8
+zolimidin,vanedannende,647,934.7770003943472,0
+troxipid,vanedannende,468,724.2705326855775,3
+vismut subnitrat,vanedannende,1164,159.1508234187642,6
+alginsyre,vanedannende,636,318.3667718340539,1
+rebamipid,vanlig,561,832.5214041976014
+Koronavaksine,vanlig,40000,139.23
+oksyfencyklimin,vanlig,948,273.25692720015945
+kamylofin,narkotisk,990,941.6220317540958,1
+mebeverin,vanedannende,331,403.9503280490946,2
+trimebutin,vanlig,887,120.53744698830089
+rociverin,vanlig,362,889.4439862147024
+dicykloverin,narkotisk,117,136.8972958213206,2
+diheksyverin,vanlig,214,308.54786825164535
+difemerin,vanlig,1249,521.1382416396889
+piperidolat,vanedannende,746,205.95046118934843,1
+benzilon,vanedannende,828,201.6575780255271,2
+glykopyrronbromid,narkotisk,810,905.4675891348644,9
+oksyfenon,narkotisk,1303,97.28505900146753,0
+pentienat,vanlig,995,407.9627266460897
+propantelin,narkotisk,502,584.0965784905216,9
+otiloniumbromid,vanedannende,1038,901.250761770133,0
+metantelin,vanedannende,291,807.5655768784972,6
+tridiheksetyl,vanedannende,1298,169.32671068093438,9
+isopropamid,narkotisk,1326,282.55664706094143,5
+heksocyklum,vanlig,666,486.778269189743
+poldon,vanedannende,455,686.1855750020188,10
+mepenzolat,vanedannende,805,257.47988200192196,6
+bevon,vanlig,236,145.27131651399947
+pipenzolon,narkotisk,723,179.65348664377836,5
+difemanil,vanlig,350,612.158418511956
+(2-benzhydryloksyetyl)dietylmetylammonium jodid,vanedannende,573,41.009245600902986,2
+tiemoniumjodid,vanedannende,1025,673.8511522022139,10
+prifiniumbromid,narkotisk,996,700.7012801318987,8
+timepidiumbromid,narkotisk,675,970.4901476647434,6
+fenpiverin,narkotisk,1125,989.2055062427613,8
+dimetylaminopropionylfentiazin,vanedannende,1343,410.03608910248727,4
+nikofetamid,vanlig,937,340.9422652951842
+tiropramid,vanedannende,115,888.2936972205009,3
+papaverin,vanedannende,1230,601.8560717530529,9
+drotaverin,narkotisk,878,988.9036956628184,4
+moxaverin,vanedannende,751,601.5129318041296,8
+alosetron,vanedannende,540,19.26371822825477,5
+cilansetron,vanedannende,251,193.41928796357098,3
+fenpipran,narkotisk,304,894.6582840998553,2
+diisopromin,vanlig,1020,336.23113392945845
+klorbenzoxamin,vanlig,594,184.98611941711155
+paracet,vanlig,400,3.0
+weed,narkotisk,999,1010.0,5
+# Leger (navn,kontrollid / 0 hvis vanlig lege)Annika Willlock Olstad,864
+Christoffer Bjelke,0
+Daniel Clemeth Bjerkeland,0
+Henrik Heiberg,0
+Jaime Løve Hansen,0
+Johannes Broch-Due,0
+Marlen Jarholt,0
+Peter Kristiansen,301
+Sindre Ask Vestaberg,0
+Tobias Paulsen,0
+Vedangini Sahajpal,977
+monrad legesen,0
+# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])1,Annika Willlock Olstad,22,hvit,742
+2,Marlen Jarholt,23,blaa,655
+3,Annika Willlock Olstad,37,hvit,249
+4,Marlen Jarholt,68,hvit,195
+5,Christoffer Bjelke,65,hvit,733
+6,Peter Kristiansen,41,hvit
+7,Christoffer Bjelke,34,hvit,126
+8,Marlen Jarholt,24,hvit,287
+9,Christoffer Bjelke,43,blaa,764
+10,Peter Kristiansen,35,hvit
+11,Christoffer Bjelke,44,blaa,834
+12,Annika Willlock Olstad,3,hvit,958
+14,Marlen Jarholt,72,blaa,621
+16,Christoffer Bjelke,74,blaa,590
+18,Peter Kristiansen,59,hvit,553
+19,Peter Kristiansen,59,hvit,341
+20,Christoffer Bjelke,46,blaa,341
+21,Annika Willlock Olstad,87,hvit
+22,Marlen Jarholt,72,hvit,877
+23,Peter Kristiansen,68,blaa,675
+27,Annika Willlock Olstad,86,hvit,533
+30,Annika Willlock Olstad,5,blaa,497
+31,Marlen Jarholt,71,hvit,949
+32,Peter Kristiansen,34,blaa,17
+33,Annika Willlock Olstad,16,hvit
+36,Marlen Jarholt,5,hvit,268
+37,Christoffer Bjelke,52,hvit,479
+38,Annika Willlock Olstad,12,hvit,90
+39,Marlen Jarholt,14,hvit
+41,Peter Kristiansen,52,hvit
+43,Annika Willlock Olstad,80,hvit,652
+44,Peter Kristiansen,53,hvit,844
+45,Annika Willlock Olstad,86,hvit,56
+46,Christoffer Bjelke,52,hvit,969
+47,Christoffer Bjelke,86,hvit,150
+48,Annika Willlock Olstad,12,hvit
+50,Annika Willlock Olstad,82,hvit,627
+51,Annika Willlock Olstad,30,hvit,865
+53,Christoffer Bjelke,20,hvit,489
+54,Marlen Jarholt,69,hvit,26
+55,Christoffer Bjelke,83,hvit,797
+56,Christoffer Bjelke,83,hvit,288
+57,Peter Kristiansen,5,hvit
+58,Christoffer Bjelke,86,hvit,976
+60,Peter Kristiansen,64,hvit,513
+61,Christoffer Bjelke,10,blaa,409
+62,Peter Kristiansen,78,blaa,149
+63,Annika Willlock Olstad,34,hvit,953
+64,Annika Willlock Olstad,22,hvit
+65,Christoffer Bjelke,28,hvit,6
+66,Annika Willlock Olstad,74,blaa,966
+67,Christoffer Bjelke,53,hvit,516
+68,Peter Kristiansen,80,hvit
+69,Christoffer Bjelke,14,hvit
+71,Peter Kristiansen,86,blaa,741
+72,Peter Kristiansen,53,hvit,19
+73,Christoffer Bjelke,81,hvit,731
+74,Christoffer Bjelke,80,blaa,660
+76,Christoffer Bjelke,43,hvit
+77,Annika Willlock Olstad,61,hvit
+78,Peter Kristiansen,77,hvit
+79,Peter Kristiansen,2,blaa,785
+80,Annika Willlock Olstad,19,hvit,362
+81,Peter Kristiansen,47,hvit
+82,Peter Kristiansen,37,hvit,694
+83,Peter Kristiansen,38,hvit,203
+84,Christoffer Bjelke,13,hvit
+85,Peter Kristiansen,46,hvit
+86,Marlen Jarholt,81,hvit,26
+87,Peter Kristiansen,18,blaa,476
+88,Peter Kristiansen,47,blaa,340
+89,Christoffer Bjelke,82,hvit
+90,Marlen Jarholt,75,hvit,877
+91,Marlen Jarholt,86,hvit,15
+92,Christoffer Bjelke,68,hvit
+93,Annika Willlock Olstad,71,blaa,404
+94,Peter Kristiansen,46,hvit,982
+95,Christoffer Bjelke,9,blaa,601
+96,Peter Kristiansen,29,blaa,210
+98,Annika Willlock Olstad,1,hvit,672
+99,Annika Willlock Olstad,29,hvit,5
+100,Annika Willlock Olstad,65,hvit,764
+101,Peter Kristiansen,81,blaa,774
+102,Peter Kristiansen,46,hvit,444
+103,Marlen Jarholt,64,hvit
+104,Christoffer Bjelke,77,hvit
+105,Peter Kristiansen,83,blaa,434
+106,Peter Kristiansen,71,hvit,444
+107,Peter Kristiansen,28,blaa,19
+108,Peter Kristiansen,11,hvit,984
+109,Christoffer Bjelke,75,hvit,497
+110,Christoffer Bjelke,78,hvit,771
+111,Marlen Jarholt,81,hvit
+112,Peter Kristiansen,33,hvit,164
+113,Annika Willlock Olstad,23,hvit,328
+114,Marlen Jarholt,6,hvit,843
+115,Annika Willlock Olstad,71,hvit
+117,Marlen Jarholt,55,hvit,649
+118,Annika Willlock Olstad,75,blaa,301
+119,Christoffer Bjelke,16,hvit
+120,Annika Willlock Olstad,53,hvit,786
+121,Annika Willlock Olstad,36,blaa,736
+122,Annika Willlock Olstad,70,blaa,508
+123,Annika Willlock Olstad,31,hvit,99
+124,Annika Willlock Olstad,16,hvit,307
+125,Christoffer Bjelke,42,hvit
+126,Marlen Jarholt,12,hvit
+129,Marlen Jarholt,4,hvit,267
+130,Peter Kristiansen,35,hvit,275
+131,Christoffer Bjelke,45,hvit,239
+132,Annika Willlock Olstad,57,hvit,556
+133,Christoffer Bjelke,64,blaa,426
+134,Marlen Jarholt,80,blaa,225
+135,Marlen Jarholt,41,hvit,672
+136,Marlen Jarholt,72,blaa,626
+138,Peter Kristiansen,66,hvit
+139,Marlen Jarholt,70,hvit,803
+140,Christoffer Bjelke,17,blaa,648
+141,Christoffer Bjelke,53,hvit
+142,Annika Willlock Olstad,60,hvit,951
+143,Marlen Jarholt,87,blaa,501
+144,Christoffer Bjelke,83,hvit
+145,Christoffer Bjelke,68,hvit
+146,Marlen Jarholt,10,hvit
+147,Annika Willlock Olstad,37,blaa,203
+148,Christoffer Bjelke,35,hvit,281
+149,Peter Kristiansen,72,hvit

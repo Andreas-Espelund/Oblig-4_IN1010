@@ -368,12 +368,109 @@ public class Legesystem {
             }
         }
     }
-
+    
     public static void skrivUtStatestikk(){
-      int valg = 0;
-      while (valg != 5){
+        int valg = 0;
+        while (valg != 5){
+  
+          //MENYEN:
+          statMeny();
+          valg = taInput(1,5);
+  
+          //Vanedannende:
+          if(valg == 1){
+            int antVane = 0;
+  
+            //Teller resepter med vanedannende legemiddel
+            for (Resept r : resepter){
+              if(r.hentLegemiddel() instanceof Vanedannende){
+                antVane ++;
+              }
+            }
+  
+            System.out.println("\nTotal antall utskrevne resepter av typen vanedannende legemidler: " + antVane + "\n");
+  
+            gaaTilbake();
+  
+          }
+  
+        //Narkotiske:
+        if(valg == 2){
+          int antNark = 0;
+  
+          //Teller antall resepter med narkotisk legemiddel:
+          for (Resept r : resepter){
+            if(r.hentLegemiddel() instanceof Narkotisk){
+              antNark ++;
+            }
+          }
+  
+          System.out.println("\nTotal antall utskrevne resepter av typen narkotiske legemidler: " + antNark + "\n");
+  
+          gaaTilbake();
+  
+        }
+  
+        // Missbruk:
+        // Lege som har skrivd ut Narkotisk resept:
+        if(valg == 3){
+          System.out.println();
+          
+          //For hver lege:
+          for(Lege lege : leger){
+            int tell = 0;
+            Lenkeliste<Resept> res = lege.hentReseptliste();
+  
+            //Telles antall utskrevne resepter som er narkotisk:
+            for(Resept r : res){
+              if(r.hentLegemiddel() instanceof Narkotisk){
+                tell ++;
+              }
+            }
+  
+            if (tell != 0){
+              System.out.println(lege.hentNavn() + " har skrevet ut " + tell + " narkotiske resepter.");
+  
+            }
+          }
+          System.out.println();
+          gaaTilbake();
+  
+        }
+  
+        //pasient med gyldig reit på narkotisk resept:
+        if(valg == 4) {
+          System.out.println();
+  
+          //For hver pasient:
+          for (Pasient pas : pasienter){
+            int tell = 0;
+            Stabel<Resept> res = pas.hentResepter();
+  
+            //Teller hvor mange narkotiske resepter som er gyldige:
+            for(Resept r : res){
+              if(r.hentLegemiddel() instanceof Narkotisk && r.hentReit() > 0){
+                tell++;
+              }
+            }
+  
+            if(tell != 0){
+              System.out.println(pas.hentNavn() + " har " + tell + " gyldige narkotiske resepter.");
+  
+            }
+          }
+          System.out.println();
+          gaaTilbake();
+  
+        }
+      }
+      // Tilbake til hovedmenyen:
+      System.out.println("Tilbake til hovedmeny...");
+    }
+  
 
-    //skriver data til fil
+
+
     public static void skrivAlleDataTilFil(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Tast inn filnavn:");
@@ -387,110 +484,69 @@ public class Legesystem {
             for (Pasient p : pasienter){
                 fr.write(p.hentNavn() + ","+p.hentFoedselsnummer()+"\n");
             }
-          }
 
-          System.out.println("\nTotal antall utskrevne resepter av typen vanedannende legemidler: " + antVane + "\n");
-
-          gaaTilbake();
-
-        }
-
-      //Narkotiske:
-      else if(valg == 2){
-        int antNark = 0;
-
-        //Teller antall resepter med narkotisk legemiddel:
-        for (Resept r : resepter){
-          if(r.hentLegemiddel() instanceof Narkotisk){
-            antNark ++;
-          }
-        }
-
-        System.out.println("\nTotal antall utskrevne resepter av typen narkotiske legemidler: " + antNark + "\n");
-
-        gaaTilbake();
-
-      }
-
-      // Missbruk:
-      // Lege som har skrivd ut Narkotisk resept:
-      if(valg == 3){
-        System.out.println();
-
-        //For hver lege:
-        for(Lege lege : leger){
-          int tellSpes = 0;
-          int tellUspes = 0;
-
-          if(lege instanceof Spesialist){
-            Lenkeliste<Resept> res = lege.hentReseptliste();
-
-            //Telles antall utskrevne resepter som er narkotisk og skrevet ut av lege med spesialisering:
-            for(Resept r : res){
-              if(r.hentLegemiddel() instanceof Narkotisk){
-                tellSpes ++;
-              }
-            // }
-          }
-
-          if (tellSpes != 0){
-            System.out.println(lege.hentNavn() + " har skrevet ut " + tellSpes + " narkotiske resepter og har konrollID.");
-
-          }
-        } else{
-          Lenkeliste<Resept> res = lege.hentReseptliste();
-
-          //Telles antall utskrevne resepter som er narkotisk men skrevet av ikke spesialisert lege:
-          for(Resept r : res){
-            if(r.hentLegemiddel() instanceof Narkotisk){
-              tellUspes ++;
+            fr.write("# Legemidler (navn,type,pris,virkestoff,[styrke])\n");
+            for (Legemiddel lm : legemidler){
+                fr.write(lm.hentNavn());
+                if (lm instanceof Vanlig){
+                    fr.write(",vanlig");
+                }else if(lm instanceof Vanedannende){
+                    fr.write(",vanedannende");
+                }else if(lm instanceof Narkotisk){
+                    fr.write(",narkotisk");
+                }
+                fr.write(","+lm.hentPris()+","+ lm.hentVirkestoff());
+                if(lm instanceof Narkotisk){
+                    Narkotisk n = (Narkotisk) lm;
+                    fr.write(","+ n.hentNarkotiskStyrke());
+                }else if(lm instanceof Vanedannende){
+                    Vanedannende v = (Vanedannende) lm;
+                    fr.write("," + v.hentVanedannendeStyrke());
+                }
+                fr.write("\n");
             }
-          // }
-        }
 
-        if (tellUspes != 0){
-          System.out.println(lege.hentNavn() + " har skrevet ut " + tellUspes + " narkotiske resepter men har IKKE kontrollID.");
-        }
-      }
-
-      }
-      System.out.println();
-      gaaTilbake();
-    }
-
-      //pasient med gyldig reit på narkotisk resept:
-      if(valg == 4) {
-        System.out.println();
-
-        //For hver pasient:
-        for (Pasient pas : pasienter){
-          int tell = 0;
-          Stabel<Resept> res = pas.hentResepter();
-
-          //Teller hvor mange narkotiske resepter som er gyldige:
-          for(Resept r : res){
-            if(r.hentLegemiddel() instanceof Narkotisk && r.hentReit() > 0){
-              tell++;
+            fr.write("# Leger (navn,kontrollid / 0 hvis vanlig lege)");
+            for (Lege l : leger){
+                fr.write(l.hentNavn()+",");
+                if (l instanceof Spesialist){
+                    Spesialist s = (Spesialist) l;
+                    fr.write(s.hentKontrollID() + "\n");
+                }else{
+                    fr.write("0\n");
+                }
             }
-          }
 
-          if(tell != 0){
-            System.out.println(pas.hentNavn() + " har " + tell + " gyldige narkotiske resepter.");
+            fr.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])");
+            for (Resept r : resepter){
+                fr.write(r.hentId()+","+r.hentLege().hentNavn()+","+r.hentPasientId()+",");
+                if(r instanceof HvitResept){
+                    fr.write("hvit");
+                }else if(r instanceof BlaaResept){
+                    fr.write("blaa");
+                }else if (r instanceof MilitaerResept){
+                    fr.write("militaer");
+                }else if (r instanceof PResept){
+                    fr.write("p");
+                }
+                if (!(r instanceof PResept)){
+                    fr.write(","+r.hentReit());
+                }
+                fr.write("\n");
+            }
+            System.out.println("Utskrift til '"+ filnavn +"' fullfoert!");
 
-          }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            //close resources
+            try {
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println();
-        gaaTilbake();
-
-      }
     }
-    // Tilbake til hovedmenyen:
-    System.out.println("Tilbake til hovedmeny...");
-  }
-
-
-
-    public static void skrivAlleDataTilFil(){}
 
     public static void leggTilLege(){
         // Oppretter scanner-objekt
