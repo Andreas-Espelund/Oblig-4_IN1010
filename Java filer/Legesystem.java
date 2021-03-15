@@ -650,6 +650,11 @@ public class Legesystem {
 
         // Henter informasjon om lege
         while (legeResept == null){
+            System.out.println("=============Leger=============");
+            for  (Lege l : leger){
+                System.out.println(l.hentNavn());
+            }
+            System.out.println("===============================");
             System.out.print("Navn (Lege): ");
             String legeNavn = tastatur.nextLine();
             for (Lege lege : leger){
@@ -661,7 +666,13 @@ public class Legesystem {
 
         // Henter informasjon om pasient
         while (pasientResept == null){
+            System.out.println("===========Pasienter===========");
+            for  (Pasient p : pasienter){
+                System.out.println(p.hentNavn());
+            }
+            System.out.println("===============================");
             System.out.print("Navn (Pasient): ");
+            
             String pasientNavn = tastatur.nextLine();
             for (Pasient pasient : pasienter){
                 if (pasient.hentNavn().toLowerCase().equals( pasientNavn.toLowerCase())){
@@ -672,6 +683,11 @@ public class Legesystem {
 
         // Henter informasjon om legemiddel
         while (legemiddelResept == null){
+            System.out.println("===========Legemidler===========");
+            for  (Legemiddel lm : legemidler){
+                System.out.println(lm.hentNavn());
+            }
+            System.out.println("===============================");
             System.out.print("Navn (Legemiddel): ");
             String legemiddelNavn = tastatur.nextLine();
             for (Legemiddel legemiddel : legemidler){
@@ -684,7 +700,7 @@ public class Legesystem {
 
         if (valg == 1){
             System.out.print("Reit: ");
-            int reit = tastatur.nextInt();
+            int reit = taInput(1, 999999);
             try {
                 Resept resept = legeResept.skrivHvitResept(legemiddelResept, pasientResept, reit);
                 resepter.leggTil(resept);
@@ -697,7 +713,7 @@ public class Legesystem {
         //Oppretter og legger til nye elementer i systemet
         else if (valg == 2){
             System.out.print("Reit: ");
-            int reit = tastatur.nextInt();
+            int reit = taInput(1, 999999);
             try {
                 Resept resept = legeResept.skrivMillitaerResept(legemiddelResept, pasientResept, reit);
                 resepter.leggTil(resept);
@@ -719,7 +735,7 @@ public class Legesystem {
         //undermeny for aa skrive ut forskjellig statestikk
         else if (valg == 4){
             System.out.print("Reit: ");
-            int reit = tastatur.nextInt();
+            int reit = taInput(1, 999999);
             try {
                 Resept resept = legeResept.skrivBlaaResept(legemiddelResept, pasientResept, reit);
                 resepter.leggTil(resept);
