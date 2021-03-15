@@ -527,7 +527,7 @@ public class Legesystem {
             System.out.println();
         }
 
-        System.out.println("========Resept========");
+        System.out.println("=========RESEPT=========");
         System.out.println("|1.| Hvit resept       |");
         System.out.println("|2.| Militaerresept    |");
         System.out.println("|3.| P-resept          |");
@@ -545,6 +545,9 @@ public class Legesystem {
                     legeResept = lege;
                 }
             }
+            if (legeResept == null){
+                System.out.println("Legen du har oppgitt finnes ikke, prøv igjen.");
+            }
         }
 
         // Henter informasjon om pasient
@@ -556,6 +559,9 @@ public class Legesystem {
                     pasientResept = pasient;
                 }
             }
+            if (pasientResept == null){
+                System.out.println("Pasienten du har oppgitt finnes ikke, prøv igjen.");
+            }
         }
 
         // Henter informasjon om legemiddel
@@ -566,6 +572,9 @@ public class Legesystem {
                 if (legemiddel.hentNavn().toLowerCase().equals( legemiddelNavn.toLowerCase())){
                     legemiddelResept = legemiddel;
                 }
+            }
+            if (legemiddelResept == null){
+                System.out.println("Legemiddelet finnes ikke, prøv igjen.");
             }
         }
 
@@ -628,7 +637,7 @@ public class Legesystem {
             System.out.println();
         }
 
-        System.out.println("========Legemiddel========");
+        System.out.println("========LEGEMIDDEL========");
         System.out.println("|1.| Vanlig              |");
         System.out.println("|2.| Narkotisk           |");
         System.out.println("|3.| Vanedannende        |");
@@ -716,7 +725,7 @@ public class Legesystem {
     }
 
     public static void statMeny(){
-      for (int i = 0; i < 10 ; i ++){
+      for (int i = 0; i < 30 ; i ++){
           System.out.println();
       }
 
