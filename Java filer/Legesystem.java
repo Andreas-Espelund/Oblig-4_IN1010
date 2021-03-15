@@ -4,7 +4,31 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.*;
 import java.io.*;
+/*
+    Dette programmet lar brukeren holde styr paa en mengde leger, legemidler,
+    resepter og pasienter. Programmet tilbyr foelgende metoder:
 
+        * public static void skrivFraFil(String filnavn)
+        * public static void skrivUtOversikt()
+        * public static void leggTilElementer()
+        * public static void brukResept()
+        * public static void skrivUtStatestikk()
+        * public static void skrivAlleDataTilFil()
+        * public static void leggTilLege()
+        * public static void leggTilPasient()
+        * public static void leggTilResept()
+        * public static void leggTilLegemiddel()
+        * public static void skrivMeny()
+        * public static int taInput(int start, int slutt)
+        * public static void gaaTilbake()
+        * public static void statMeny()
+
+    Laga av:
+    Miriam Landa
+    Andreas Espelund
+    Erik Mannsverk 
+    Linn Michelle Jacobsen
+*/
 public class Legesystem {
     //beholdere for pasienter, legemidler, resepter og leger
     private static Lenkeliste<Pasient> pasienter = new Lenkeliste<Pasient>();
@@ -66,11 +90,7 @@ public class Legesystem {
     }
 
 
-    /*
-        skrivFrafil leser inn linjer og legger til riktig type element
-        innesingsfilene kan inneholde feil, disse linjene og feil blir printa til terminal
-        og blir ikkje lagt inn.
-    */
+    //leser inn filer med infromasjon og lagerer det i beholderene
     public static void skrivFraFil(String filnavn)throws FileNotFoundException{
         try{
             File fil = new File(filnavn);
@@ -228,6 +248,7 @@ public class Legesystem {
         videre.nextLine();
     }
 
+    //skriver ut en oversikt over alle leger, legemidler, pasienter og resepter
     public static void skrivUtOversikt(){
         System.out.println("\n\n==========OVERSIKT OVER LEGER, LEGEMIDDEL, RESEPTER & PASIENTER==========\n");
       //Oppdateres når oppgave D er gjort - "Leger skal skrives ut i ordnet rekkefølge"
@@ -275,6 +296,7 @@ public class Legesystem {
 
     }
 
+    //gaar til en ny undermeny som lar bruker legge til elementer i programmet
     public static void leggTilElementer(){
         for (int i = 0; i < 30 ; i ++){
             System.out.println();
@@ -318,6 +340,7 @@ public class Legesystem {
 
     }
 
+    //lar brukeren velge en pasient, og en resept, slik at den kan brukes
     public static void brukResept(){
         // Skriver ut alle pasientene som det er resepter for:
         int teller = 0;
@@ -369,6 +392,7 @@ public class Legesystem {
         }
     }
     
+    //skriver ut informasjon om objektene i programmet
     public static void skrivUtStatestikk(){
         int valg = 0;
         while (valg != 5){
@@ -487,8 +511,8 @@ public class Legesystem {
       System.out.println("Tilbake til hovedmeny...");
     }
   
-
-  public static void skrivAlleDataTilFil(){
+    //skriver data til en fil i samme format som vi leser inn med
+    public static void skrivAlleDataTilFil(){
   Scanner sc = new Scanner(System.in);
   System.out.println("Tast inn filnavn:");
   String filnavn = sc.nextLine()+".txt";
@@ -565,7 +589,7 @@ public class Legesystem {
   }
 }
 
-
+    //legger til lege
     public static void leggTilLege(){
         // Oppretter scanner-objekt
         Scanner tastatur = new Scanner(System.in);
@@ -583,6 +607,7 @@ public class Legesystem {
         
     }
 
+    //legger til pasient
     public static void leggTilPasient(){
         // Oppretter scanner-objekt
         Scanner tastatur = new Scanner(System.in);
@@ -601,6 +626,7 @@ public class Legesystem {
         
     }
 
+    //legger til resept
     public static void leggTilResept(){
         // Oppretter scanner-objekt
         Scanner tastatur = new Scanner(System.in);
@@ -705,6 +731,7 @@ public class Legesystem {
         System.out.println("Resept fra " + legeResept.hentNavn() + " er gitt til " + pasientResept.hentNavn() + " for legemiddelet " + legemiddelResept.hentNavn() + ".");
     }
 
+    //legger til legemiddel
     public static void leggTilLegemiddel(){
         // Oppretter scanner-objekt
         Scanner tastatur = new Scanner(System.in);
@@ -756,7 +783,6 @@ public class Legesystem {
         System.out.println("Legemiddelet " + legemiddelNavn + " er lagt til.");
     }
 
-
     //skriver ut menyen med tomme linjer over slik at skjermen blir "resetta"
     public static void skrivMeny(){
         for (int i = 0; i < 30 ; i ++){
@@ -801,6 +827,7 @@ public class Legesystem {
         sc.nextLine();
     }
 
+    //skriver statestikkmenyen
     public static void statMeny(){
       for (int i = 0; i < 10 ; i ++){
           System.out.println();
