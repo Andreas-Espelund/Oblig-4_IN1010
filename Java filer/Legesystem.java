@@ -373,18 +373,19 @@ public class Legesystem {
       int valg = 0;
       while (valg != 5){
 
-        //MENYEN:
-        statMeny();
-        valg = taInput(1,5);
+    //skriver data til fil
+    public static void skrivAlleDataTilFil(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Tast inn filnavn:");
+        String filnavn = sc.nextLine()+".txt";
+        File file = new File(filnavn);
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(file);
+            fr.write("# Pasienter (navn, fnr)\n");
 
-        //Vanedannende:
-        if(valg == 1){
-          int antVane = 0;
-
-          //Teller resepter med vanedannende legemiddel
-          for (Resept r : resepter){
-            if(r.hentLegemiddel() instanceof Vanedannende){
-              antVane ++;
+            for (Pasient p : pasienter){
+                fr.write(p.hentNavn() + ","+p.hentFoedselsnummer()+"\n");
             }
           }
 
