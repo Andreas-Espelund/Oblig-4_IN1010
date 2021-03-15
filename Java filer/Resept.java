@@ -1,5 +1,5 @@
 abstract class Resept{
-    private static int nesteId = 1;
+    protected static int nesteId = 0;
     protected int id;
     protected Legemiddel legemiddel;
     protected Lege lege;
@@ -14,9 +14,11 @@ abstract class Resept{
         this.lege = lege;
         this.pasient = pasient;
         this.reit = reit;
-        id = nesteId;
-        nesteId ++;
+        this.id = nesteId ++;
+
         pris = legemiddel.hentPris();
+        pasient.leggTilResept(this);
+        lege.settInnResept(this);
 
 
     }
@@ -37,8 +39,12 @@ abstract class Resept{
     }
 
     //returnerer reseptens pasientId
-    public Pasient hentPasientId(){
-        return pasient;
+    public int hentPasientId(){
+        return pasient.hentID();
+    }
+
+    public Pasient hentPasient(){
+      return pasient;
     }
 
     //returnerer reseptens gjenstaande reit
@@ -48,8 +54,12 @@ abstract class Resept{
 
     //reduserer reit med 1 om den ble brukt
     public boolean bruk() {
-        reit = reit -1;
-        return reit >= 0;
+        if (reit > 0){
+            reit --;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     //abstrakt metode for aa hente reseptens farge
@@ -61,6 +71,6 @@ abstract class Resept{
     //toString returnerer informasjon om resepten
     public String toString(){
         return "ID: " + id + " | Legemiddel: " + legemiddel.hentNavn() +
-        " | Lege: " + lege + " | Pasient ID: " + pasient.hentID() + " | Reit: " + reit + " | Pris aa betale: " + this.prisAaBetale();
+        " | Lege: " + lege.hentNavn() + " | Pasient ID: " + hentPasientId() + " | Reit: " + reit + " | Pris: " + this.prisAaBetale();
     }
 }
