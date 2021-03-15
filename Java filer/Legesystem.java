@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.IOException;
 import java.io.File;
 
 
@@ -25,7 +27,7 @@ public class Legesystem {
 
             // skriver ut fullstendig oversikt over pasienter, leger, legemidler og reseptar
             if (valg == 1){
-                System.out.println("plassholder for meny 1");
+                
                 skrivUtOversikt();
                 gaaTilbake();
             }
@@ -41,7 +43,7 @@ public class Legesystem {
 
             //bruker en gitt resept fra listen til en pasient
             else if (valg == 3){
-                System.out.println("plassholder for meny 3");
+                
                 brukResept();
                 gaaTilbake();
             }
@@ -57,7 +59,7 @@ public class Legesystem {
 
             //skriver all data til fil
             else if(valg == 5){
-                System.out.println("plassholder for meny 5");
+                
                 skrivAlleDataTilFil();
                 gaaTilbake();
             }
@@ -343,11 +345,85 @@ public class Legesystem {
         
     }
 
-    public static void skrivUtStatestikk(){
-       
-    }
+    public static void skrivUtStatestikk(){}
 
-    public static void skrivAlleDataTilFil(){}
+    public static void skrivAlleDataTilFil(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Tast inn filnavn:");
+        String filnavn = sc.nextLine()+".txt";
+        File file = new File(filnavn);
+        FileWriter fr = null;
+        try {
+            fr = new FileWriter(file);
+            fr.write("# Pasienter (navn, fnr)\n");
+
+            for (Pasient p : pasienter){
+                fr.write(p.hentNavn() + ","+p.hentFoedselsnummer()+"\n");
+            }
+
+            fr.write("# Legemidler (navn,type,pris,virkestoff,[styrke])\n");
+            for (Legemiddel lm : legemidler){
+                fr.write(lm.hentNavn());
+                if (lm instanceof Vanlig){
+                    fr.write(",vanlig");
+                }else if(lm instanceof Vanedannende){
+                    fr.write(",vanedannende");
+                }else if(lm instanceof Narkotisk){
+                    fr.write(",narkotisk");
+                }
+                fr.write(","+lm.hentPris()+","+ lm.hentVirkestoff());
+                if(lm instanceof Narkotisk){
+                    Narkotisk n = (Narkotisk) lm;
+                    fr.write(","+ n.hentNarkotiskStyrke());
+                }else if(lm instanceof Vanedannende){
+                    Vanedannende v = (Vanedannende) lm;
+                    fr.write("," + v.hentVanedannendeStyrke());
+                }
+                fr.write("\n");
+            }
+
+            fr.write("# Leger (navn,kontrollid / 0 hvis vanlig lege)");
+            for (Lege l : leger){
+                fr.write(l.hentNavn()+",");
+                if (l instanceof Spesialist){
+                    Spesialist s = (Spesialist) l;
+                    fr.write(s.hentKontrollID() + "\n");
+                }else{
+                    fr.write("0\n");
+                }
+            }
+
+            fr.write("# Resepter (legemiddelNummer,legeNavn,pasientID,type,[reit])");
+            for (Resept r : resepter){
+                fr.write(r.hentId()+","+r.hentLege().hentNavn()+","+r.hentPasientId()+",");
+                if(r instanceof HvitResept){
+                    fr.write("hvit");
+                }else if(r instanceof BlaaResept){
+                    fr.write("blaa");
+                }else if (r instanceof MilitaerResept){
+                    fr.write("militaer");
+                }else if (r instanceof PResept){
+                    fr.write("p");
+                }
+                if (!(r instanceof PResept)){
+                    fr.write(","+r.hentReit());
+                }
+                fr.write("\n");
+            }
+            System.out.println("Utskrift til '"+ filnavn +"' fullfoert!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            //close resources
+            try {
+                fr.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+     
 
     public static void leggTilLege(){}
 
