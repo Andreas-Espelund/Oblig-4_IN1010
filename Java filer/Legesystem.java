@@ -395,7 +395,7 @@ public class Legesystem {
           }
   
         //Narkotiske:
-        if(valg == 2){
+        else if(valg == 2){
           int antNark = 0;
   
           //Teller antall resepter med narkotisk legemiddel:
@@ -415,28 +415,47 @@ public class Legesystem {
         // Lege som har skrivd ut Narkotisk resept:
         if(valg == 3){
           System.out.println();
-          
+  
           //For hver lege:
           for(Lege lege : leger){
-            int tell = 0;
+            int tellSpes = 0;
+            int tellUspes = 0;
+  
+            if(lege instanceof Spesialist){
+              Lenkeliste<Resept> res = lege.hentReseptliste();
+  
+              //Telles antall utskrevne resepter som er narkotisk og skrevet ut av lege med spesialisering:
+              for(Resept r : res){
+                if(r.hentLegemiddel() instanceof Narkotisk){
+                  tellSpes ++;
+                }
+              // }
+            }
+  
+            if (tellSpes != 0){
+              System.out.println(lege.hentNavn() + " har skrevet ut " + tellSpes + " narkotiske resepter og har konrollID.");
+  
+            }
+          } else{
             Lenkeliste<Resept> res = lege.hentReseptliste();
   
-            //Telles antall utskrevne resepter som er narkotisk:
+            //Telles antall utskrevne resepter som er narkotisk men skrevet av ikke spesialisert lege:
             for(Resept r : res){
               if(r.hentLegemiddel() instanceof Narkotisk){
-                tell ++;
+                tellUspes ++;
               }
-            }
-  
-            if (tell != 0){
-              System.out.println(lege.hentNavn() + " har skrevet ut " + tell + " narkotiske resepter.");
-  
-            }
+            // }
           }
-          System.out.println();
-          gaaTilbake();
+  
+          if (tellUspes != 0){
+            System.out.println(lege.hentNavn() + " har skrevet ut " + tellUspes + " narkotiske resepter men har IKKE kontrollID.");
+          }
+        }
   
         }
+        System.out.println();
+        gaaTilbake();
+      }
   
         //pasient med gyldig reit på narkotisk resept:
         if(valg == 4) {
@@ -468,129 +487,6 @@ public class Legesystem {
       System.out.println("Tilbake til hovedmeny...");
     }
   
-
-
-    public static void skrivUtStatestikk(){
-      int valg = 0;
-      while (valg != 5){
-
-        //MENYEN:
-        statMeny();
-        valg = taInput(1,5);
-
-        //Vanedannende:
-        if(valg == 1){
-          int antVane = 0;
-
-          //Teller resepter med vanedannende legemiddel
-          for (Resept r : resepter){
-            if(r.hentLegemiddel() instanceof Vanedannende){
-              antVane ++;
-            }
-          }
-
-          System.out.println("\nTotal antall utskrevne resepter av typen vanedannende legemidler: " + antVane + "\n");
-
-          gaaTilbake();
-
-        }
-
-      //Narkotiske:
-      else if(valg == 2){
-        int antNark = 0;
-
-        //Teller antall resepter med narkotisk legemiddel:
-        for (Resept r : resepter){
-          if(r.hentLegemiddel() instanceof Narkotisk){
-            antNark ++;
-          }
-        }
-
-        System.out.println("\nTotal antall utskrevne resepter av typen narkotiske legemidler: " + antNark + "\n");
-
-        gaaTilbake();
-
-      }
-
-      // Missbruk:
-      // Lege som har skrivd ut Narkotisk resept:
-      if(valg == 3){
-        System.out.println();
-
-        //For hver lege:
-        for(Lege lege : leger){
-          int tellSpes = 0;
-          int tellUspes = 0;
-
-          if(lege instanceof Spesialist){
-            Lenkeliste<Resept> res = lege.hentReseptliste();
-
-            //Telles antall utskrevne resepter som er narkotisk og skrevet ut av lege med spesialisering:
-            for(Resept r : res){
-              if(r.hentLegemiddel() instanceof Narkotisk){
-                tellSpes ++;
-              }
-            // }
-          }
-
-          if (tellSpes != 0){
-            System.out.println(lege.hentNavn() + " har skrevet ut " + tellSpes + " narkotiske resepter og har konrollID.");
-
-          }
-        } else{
-          Lenkeliste<Resept> res = lege.hentReseptliste();
-
-          //Telles antall utskrevne resepter som er narkotisk men skrevet av ikke spesialisert lege:
-          for(Resept r : res){
-            if(r.hentLegemiddel() instanceof Narkotisk){
-              tellUspes ++;
-            }
-          // }
-        }
-
-        if (tellUspes != 0){
-          System.out.println(lege.hentNavn() + " har skrevet ut " + tellUspes + " narkotiske resepter men har IKKE kontrollID.");
-        }
-      }
-
-      }
-      System.out.println();
-      gaaTilbake();
-    }
-
-      //pasient med gyldig reit på narkotisk resept:
-      if(valg == 4) {
-        System.out.println();
-
-        //For hver pasient:
-        for (Pasient pas : pasienter){
-          int tell = 0;
-          Stabel<Resept> res = pas.hentResepter();
-
-          //Teller hvor mange narkotiske resepter som er gyldige:
-          for(Resept r : res){
-            if(r.hentLegemiddel() instanceof Narkotisk && r.hentReit() > 0){
-              tell++;
-            }
-          }
-
-          if(tell != 0){
-            System.out.println(pas.hentNavn() + " har " + tell + " gyldige narkotiske resepter.");
-
-          }
-        }
-        System.out.println();
-        gaaTilbake();
-
-      }
-    }
-<<<<<<< HEAD
-=======
-    // Tilbake til hovedmenyen:
-    System.out.println("Tilbake til hovedmeny...");
-  }
-
-
 
   public static void skrivAlleDataTilFil(){
   Scanner sc = new Scanner(System.in);
@@ -677,8 +573,14 @@ public class Legesystem {
         // Henter informasjon fra bruker og legger til
         System.out.print("Navn (Lege): ");
         String legeNavn = tastatur.nextLine();
-        leger.leggTil(new Lege(legeNavn));
-        System.out.println("Lege " + legeNavn + " er lagt til.");
+
+        if (legeNavn.equals("")){
+            System.out.println("Kunne ikke legge til Lege, ugyldig navn!");
+        }else{
+            leger.leggTil(new Lege(legeNavn));
+            System.out.println("Lege " + legeNavn + " er lagt til.");
+        }
+        
     }
 
     public static void leggTilPasient(){
@@ -690,8 +592,13 @@ public class Legesystem {
         String pasientNavn = tastatur.nextLine();
         System.out.print("Fodselsnummer (Pasient): ");
         String fodselsnr = tastatur.nextLine();
-        pasienter.leggTil(new Pasient(pasientNavn, fodselsnr));
-        System.out.println("Pasient " + pasientNavn + " er lagt til.");
+        if (pasientNavn.equals("") || fodselsnr.equals("")){
+            System.out.println("Kunne ikke legge til pasient, ugyldig navn eller foedselsnummer!");
+        }else{
+            pasienter.leggTil(new Pasient(pasientNavn, fodselsnr));
+            System.out.println("Pasient " + pasientNavn + " er lagt til.");
+        }
+        
     }
 
     public static void leggTilResept(){
