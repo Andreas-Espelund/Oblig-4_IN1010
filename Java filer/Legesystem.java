@@ -414,9 +414,160 @@ public class Legesystem {
         System.out.println("Pasient " + pasientNavn + " er lagt til.");
     }
 
-    public static void leggTilResept(){}
+    public static void leggTilResept(){
+        // Oppretter scanner-objekt
+        Scanner tastatur = new Scanner(System.in);
+        Lege legeResept = null;
+        Pasient pasientResept = null;
+        Legemiddel legemiddelResept = null;
 
-    public static void leggTilLegemiddel(){}
+        // Meny for "type" resept
+        for (int i = 0; i < 30 ; i ++){
+            System.out.println();
+        }
+
+        System.out.println("========Resept========");
+        System.out.println("|1.| Hvit resept       |");
+        System.out.println("|2.| Militaerresept    |");
+        System.out.println("|3.| P-resept          |");
+        System.out.println("|4.| Blå resept        |");
+        System.out.println("========================");
+
+        int valg = taInput(1,4);
+
+        // Henter informasjon om lege
+        while (legeResept == null){
+            System.out.print("Navn (Lege): ");
+            String legeNavn = tastatur.nextLine();
+            for (Lege lege : leger){
+                if (lege.hentNavn().toLowerCase().equals( legeNavn.toLowerCase())){
+                    legeResept = lege;
+                }
+            }
+        }
+
+        // Henter informasjon om pasient
+        while (pasientResept == null){
+            System.out.print("Navn (Pasient): ");
+            String pasientNavn = tastatur.nextLine();
+            for (Pasient pasient : pasienter){
+                if (pasient.hentNavn().toLowerCase().equals( pasientNavn.toLowerCase())){
+                    pasientResept = pasient;
+                }
+            }
+        }
+
+        // Henter informasjon om legemiddel
+        while (legemiddelResept == null){
+            System.out.print("Navn (Legemiddel): ");
+            String legemiddelNavn = tastatur.nextLine();
+            for (Legemiddel legemiddel : legemidler){
+                if (legemiddel.hentNavn().toLowerCase().equals( legemiddelNavn.toLowerCase())){
+                    legemiddelResept = legemiddel;
+                }
+            }
+        }
+
+
+        if (valg == 1){
+            System.out.print("Reit: ");
+            int reit = tastatur.nextInt();
+            try {
+                Resept resept = legeResept.skrivHvitResept(legemiddelResept, pasientResept, reit);
+                resepter.leggTil(resept);
+            } catch (UlovligUtskrift u){
+                System.out.println(u);
+            }
+
+        }
+
+        //Oppretter og legger til nye elementer i systemet
+        else if (valg == 2){
+            System.out.print("Reit: ");
+            int reit = tastatur.nextInt();
+            try {
+                Resept resept = legeResept.skrivMillitaerResept(legemiddelResept, pasientResept, reit);
+                resepter.leggTil(resept);
+            } catch (UlovligUtskrift u){
+                System.out.println(u);
+            }
+        }
+
+        //bruker en gitt resept fra listen til en pasient
+        else if (valg == 3){
+            try {
+                Resept resept = legeResept.skrivPResept(legemiddelResept, pasientResept);
+                resepter.leggTil(resept);
+            } catch (UlovligUtskrift u){
+                System.out.println(u);
+            }
+        }
+
+        //undermeny for aa skrive ut forskjellig statestikk
+        else if (valg == 4){
+            System.out.print("Reit: ");
+            int reit = tastatur.nextInt();
+            try {
+                Resept resept = legeResept.skrivBlaaResept(legemiddelResept, pasientResept, reit);
+                resepter.leggTil(resept);
+            } catch (UlovligUtskrift u){
+                System.out.println(u);
+            }
+        }
+
+        System.out.println("Resept fra " + legeResept.hentNavn() + " er gitt til " + pasientResept.hentNavn() + " for legemiddelet " + legemiddelResept.hentNavn() + ".");
+    }
+
+    public static void leggTilLegemiddel(){
+        // Oppretter scanner-objekt
+        Scanner tastatur = new Scanner(System.in);
+
+        // Meny for "type" resept
+        for (int i = 0; i < 30 ; i ++){
+            System.out.println();
+        }
+
+        System.out.println("========Legemiddel========");
+        System.out.println("|1.| Vanlig              |");
+        System.out.println("|2.| Narkotisk           |");
+        System.out.println("|3.| Vanedannende        |");
+        System.out.println("==========================");
+
+        int valg = taInput(1,3);
+
+        // Henter informasjon fra bruker og legger til
+
+        System.out.print("Navn (Legemiddel): ");
+        String legemiddelNavn = tastatur.nextLine();
+        System.out.print("Pris: ");
+        int pris = tastatur.nextInt();
+        System.out.print("Virkestoff (skriv inn double): ");
+        while (!tastatur.hasNextDouble()){
+            System.out.println("Ugyldig input - må være double :");
+            tastatur.next();
+        }
+        double virkestoff = tastatur.nextDouble();
+
+        if (valg == 1){
+            legemidler.leggTil(new Vanlig(legemiddelNavn, pris, virkestoff));
+        }
+
+        //Oppretter og legger til nye elementer i systemet
+        else if (valg == 2){
+            System.out.print("Styrke: ");
+            int styrke = tastatur.nextInt();
+            legemidler.leggTil(new Narkotisk(legemiddelNavn, pris, virkestoff, styrke));
+        }
+
+        //bruker en gitt resept fra listen til en pasient
+        else if (valg == 3){
+            System.out.print("Styrke (int): ");
+            int styrke = tastatur.nextInt();
+            legemidler.leggTil(new Vanedannende(legemiddelNavn, pris, virkestoff, styrke));
+        }
+
+        System.out.println("Legemiddelet " + legemiddelNavn + " er lagt til.");
+    }
 
 
     //skriver ut menyen med tomme linjer over slik at skjermen blir "resetta"
