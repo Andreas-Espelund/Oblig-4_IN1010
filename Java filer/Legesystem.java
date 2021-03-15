@@ -150,7 +150,7 @@ public class Legesystem {
                 else if (i == 3){
                     try{
                         String navn = biter[0];
-                        String kontrollID = biter[1].strip();
+                        String kontrollID = biter[1].trim();
 
                         if (kontrollID.equals("0")){
                             leger.leggTil(new Lege(navn));
@@ -170,7 +170,7 @@ public class Legesystem {
                         String legeNavn = biter[1];
                         int pasientID = Integer.parseInt(biter[2]);
 
-                        String type = biter[3].strip();
+                        String type = biter[3].trim();
                         int reit = 0;
 
                         Legemiddel legemiddel = null;
