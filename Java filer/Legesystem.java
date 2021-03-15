@@ -278,7 +278,48 @@ public class Legesystem {
 
     }
 
-    public static void leggTilElementer(){}
+    public static void leggTilElementer(){
+        for (int i = 0; i < 30 ; i ++){
+            System.out.println();
+        }
+
+        System.out.println("========LEGG TIL========");
+        System.out.println("|1.| Lege              |");
+        System.out.println("|2.| Pasient           |");
+        System.out.println("|3.| Resept            |");
+        System.out.println("|4.| Legemiddel        |");
+        System.out.println("|5.| Gå tilbake        |");
+        System.out.println("========================");
+
+        int valg = taInput(1,5);
+
+        //Oppretter og legger til ny lege i systemet
+        if (valg == 1){
+            leggTilLege();
+        }
+
+
+        //Oppretter og legger til ny pasient i systemet
+        else if (valg == 2){
+            leggTilPasient();
+        }
+
+
+        //Oppretter og legger til ny resept i systemet
+        else if (valg == 3){
+            leggTilResept();
+        }
+
+
+        //Oppretter og legger til nytt legemiddel i systemet
+        else if (valg == 4){
+            leggTilLegemiddel();
+        }
+
+        //Går tilbake til hovedmenyen
+        else if (valg == 5){ }
+
+    }
 
     public static void brukResept(){
         // Skriver ut alle pasientene som det er resepter for:
