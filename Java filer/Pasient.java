@@ -22,6 +22,10 @@ class Pasient{
   public String hentNavn(){
     return navn;
   }
+
+  public String hentFoedselsnummer(){
+    return fodselsnr;
+  }
   //Legger en resept på toppen av stabelen vår
   public void leggTilResept(Resept resept){
     reseptStabel.leggPaa(resept);
