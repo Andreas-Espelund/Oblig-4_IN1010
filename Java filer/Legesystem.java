@@ -444,6 +444,9 @@ public class Legesystem {
                     legeResept = lege;
                 }
             }
+            if (legeResept == null){
+                System.out.println("Legen du har oppgitt finnes ikke, prøv igjen.");
+            }
         }
 
         // Henter informasjon om pasient
@@ -455,6 +458,9 @@ public class Legesystem {
                     pasientResept = pasient;
                 }
             }
+            if (pasientResept == null){
+                System.out.println("Pasienten du har oppgitt finnes ikke, prøv igjen.");
+            }
         }
 
         // Henter informasjon om legemiddel
@@ -465,6 +471,9 @@ public class Legesystem {
                 if (legemiddel.hentNavn().toLowerCase().equals( legemiddelNavn.toLowerCase())){
                     legemiddelResept = legemiddel;
                 }
+            }
+            if (legemiddelResept == null){
+                System.out.println("Legemiddelet du har oppgitt finnes ikke, prøv igjen.");
             }
         }
 
